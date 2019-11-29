@@ -1,24 +1,26 @@
 <template>
 
-<div>
-    <div>SEZNAM VÝLETŮ</div>
-    <div>VYHLEDEJ VÝLET</div>
-    <div>PŘIDEJ VÝLET</div>
-</div>
+    <section class="menu">
+        <ul>
+            <li v-on:click="changePage('searchTrip')">Vyhledej vylet</li>
+            <li v-on:click="changePage('addTrip')">Pridej vylet</li>
+            <li>Seznam vyletu</li>
+        </ul>
+    </section>  
     
 </template>
 
 <script>
 export default {
-    
+  methods: {
+    changePage(activePage) {
+      this.$emit('change-page', activePage);
+    }
+  }    
 }
 </script>
 
 <style scoped>
-
-div {
-    background-color: greenyellow;
-}
 
 </style>
 
