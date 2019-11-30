@@ -17,7 +17,14 @@
    
    <searchTrip v-if="activePage==='searchTrip'"/>
 
-    <!-- Divy s upoutovakou na vylety - namnozit pomoci vue! info natahat pres json -->
+   <!-- PRIDAVANI VYLETU -->
+
+  
+
+
+
+
+    <!-- Divy s upoutavkou na vylety - namnozit pomoci vue! info natahat pres json -->
     <section class="shortTripSection">
         <div class="shortTripDiv">
             <img class="shortTripImg" src="./assets/images/img1.jpg" alt="picOfCountryside">
@@ -46,11 +53,17 @@
             <h3>Vylet do prirody 4</h3>
         </div>
     </section>
+    
+
+    <!-- FOOTER -->
 
     <footer>
     <p>Zdroje textu: <a href="https://www.gotobrno.cz/misto/moravsky-kras/">Jedna z nejvýznamnějších krasových oblastí ve střední Evropě.</a></p>
     <p>&copy; Jana Raczova & Alexandra Simkova</p>    
     </footer>
+
+
+
     <!--<HeaderCarousel></HeaderCarousel>
     <mojeMenu />
     <mujVylet />-->
@@ -148,6 +161,7 @@ li {
     list-style-type: none;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 li:hover,
@@ -267,14 +281,14 @@ a {
         display: grid;
         justify-content: center;
         margin: auto;
-        background-color: #F4F3EE;
+        background-color: white;
         box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2), -3px 0 5px rgba(0, 0, 0, 0.2), 0 3px 5px -5px rgba(0, 0, 0, 0.2);
         margin-top: 5%;
         margin-bottom: 5%;
     }
 
     body {
-        background-color: white;
+        background-color: #F4F3EE;
     }   
 }
 
