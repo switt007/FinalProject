@@ -1,14 +1,14 @@
-[
+[ 
     { 
         "id": 1, 
         "autor": "JanaR",
         "nazev": "Tlapka na Stezce 2019 - MID", 
         "typ": 1, 
-        "kraj": 8, 
+        "kraj": 0, 
         "okruh": 1,
         "delka": 48,
         "odstavce": [
-            { "text": "Lorem ipsum 111" }
+            { "text": "Pozoruhodné jsou třeba také krasové kaňony Pustý a Suchý žleb a Rudické propadání, kde pod zemí mizí Jedovnický potok a zpět na povrch vyvěrá až po dvanácti kilometrech u Býčí skály." }
         ], 
         "zajimavosti": [
             { "text": "Lorem ipsum 111" }
@@ -29,15 +29,15 @@
         "okruh": 0,
         "delka": 2.6,
         "odstavce": [
-            { "text": "Lorem ipsum 111" }
+            { "text": "Z více než tisícovky jeskyní je jich přístupných pět. Punkevní jeskyně nabízejí možnost plavby po podzemní říčce spojenou s prohlídkou dna Machochy. Kateřinská jeskyně je známá svými výjimečnými hůlkovými stalagmity. Balcarka vyniká bohatou barevnou krápníkovou výzdobou. Sloupsko-šošůvské jeskyně tvoří mohutné chodby a podzemní propasti. Výpustek má zase za sebou bohatou vojenskou historii." }
         ], 
         "zajimavosti": [
             { "text": "Lorem ipsum 111" }
         ], 
         "fotky": [
-            { "alt": "Blanik", "url": "blanik1.jpeg", "popisek": "blanik popisek 1" },
-            { "alt": "Stavba", "url": "blanik2.jpeg", "popisek": "blanik popisek 2" },
-			{ "alt": "Socha", "url": "blanik3.jpeg", "popisek": "blanik popisek 3" }
+            { "alt": "Blanik", "url": "blanik1.jpg", "popisek": "blanik popisek 1" },
+            { "alt": "Stavba", "url": "blanik2.jpg", "popisek": "blanik popisek 2" },
+			{ "alt": "Socha", "url": "blanik3.jpg", "popisek": "blanik popisek 3" }
         ],
         "trasa_link": "https://en.mapy.cz/s/bosagenuja",
         "authorized": 0
@@ -51,17 +51,39 @@
         "okruh": 0,
         "delka": 4.6,
         "odstavce": [
-            { "text": "Lorem ipsum 111" }
+            { "text": "Moravský kras je protkán hustou sítí pěších i cyklistických tras, na kterých lze narazit na další zajímavosti, např. zříceniny hradů, poutní kostely nebo rozhledny. V oblasti je také několik často navštěvovaných horolezeckých terénů." }
         ], 
         "zajimavosti": [
             { "text": "Lorem ipsum 111" }
         ], 
         "fotky": [
-            { "alt": "Boubin", "url": "boubin1.jpeg", "popisek": "blanik popisek 1" },
-            { "alt": "Rozhledna", "url": "boubin2.jpeg", "popisek": "blanik popisek 2" },
-			{ "alt": "Chodnik", "url": "boubin3.jpeg", "popisek": "blanik popisek 3" }
+            { "alt": "Boubin", "url": "boubin1.jpg", "popisek": "blanik popisek 1" },
+            { "alt": "Rozhledna", "url": "boubin2.jpg", "popisek": "blanik popisek 2" },
+			{ "alt": "Chodnik", "url": "boubin3.jpg", "popisek": "blanik popisek 3" }
         ],
         "trasa_link": "https://en.mapy.cz/s/keperacora",
+        "authorized": 0
+    },
+    { 
+        "id": 4, 
+        "autor": "SasaS",
+        "nazev": "Výlet do Moravského krasu", 
+        "typ": 2, 
+        "kraj": 11, 
+        "okruh": 1,
+        "delka": 19,
+        "odstavce": [
+            {
+                "text": "Severně od Brna se rozkládá Chráněná krajinná oblast Moravský kras. Na ploše 92 km2 se vyskytují četné unikáty živé i neživé přírody. Lze se např. podívat do Macochy, téměř 140 metrů hluboké propasti, tzv. light hole, jež je největší svého druhu ve střední Evropě. Horní část propasti je dlouhá 174 a široká 76 metrů."
+            }
+        ], 
+        "zajimavosti": [
+            { "text": "Severně od Brna se rozkládá Chráněná krajinná oblast Moravský kras. Na ploše 92 km2 se vyskytují četné unikáty živé i neživé přírody. Lze se např. podívat do Macochy, téměř 140 metrů hluboké propasti, tzv. light hole, jež je největší svého druhu ve střední Evropě. Horní část propasti je dlouhá 174 a široká 76 metrů." }
+        ], 
+        "fotky": [
+            { "alt": "kras", "url": "img1.jpg", "popisek": "kras" }
+        ],
+        "trasa_link": "https://en.mapy.cz/s/lefehenogo",
         "authorized": 0
     }
 ]

@@ -18,33 +18,16 @@
 
   
 
-    <!-- Divy s upoutavkou na vylety - namnozit pomoci vue! info natahat pres json -->
-    <section class="shortTripSection">
-        <div class="shortTripDiv">
-            <img class="shortTripImg" src="./assets/images/img1.jpg" alt="picOfCountryside">
-            <h3>Výlet do Moravského krasu</h3>
+    <!-- Divy s upoutavkou na vylety -->
+   <section class="shortTripSection">
+        <div class="shortTripDiv" v-for="(shortTrip, index) in trips" :key="index">
+            <!--<img class="shortTripImg" v-bind:src="'../public/images/'+shortTrip.fotky[0].url" alt="picOfCountryside">-->
+            <img class="shortTripImg" v-bind:src="'./assets/images/img2.jpg'" alt="picOfCountryside">
+            <h3>{{ shortTrip.nazev }}</h3>
             <div class="elipsis">
-                <p class="text">Severně od Brna se rozkládá Chráněná krajinná oblast Moravský kras. Na ploše 92 km2 se vyskytují četné unikáty živé i neživé přírody. Lze se např. podívat do Macochy, téměř 140 metrů hluboké propasti, tzv. light hole, jež je největší svého druhu ve střední Evropě. Horní část propasti je dlouhá 174 a široká 76 metrů.
-                    Z více než tisícovky jeskyní je jich přístupných pět. Punkevní jeskyně nabízejí možnost plavby po podzemní říčce spojenou s prohlídkou dna Machochy. Kateřinská jeskyně je známá svými výjimečnými hůlkovými stalagmity. Balcarka vyniká bohatou barevnou krápníkovou výzdobou. Sloupsko-šošůvské jeskyně tvoří mohutné chodby a podzemní propasti. Výpustek má zase za sebou bohatou vojenskou historii.
-                    Pozoruhodné jsou třeba také krasové kaňony Pustý a Suchý žleb a Rudické propadání, kde pod zemí mizí Jedovnický potok a zpět na povrch vyvěrá až po dvanácti kilometrech u Býčí skály.
-                    Moravský kras je protkán hustou sítí pěších i cyklistických tras, na kterých lze narazit na další zajímavosti, např. zříceniny hradů, poutní kostely nebo rozhledny. V oblasti je také několik často navštěvovaných horolezeckých terénů.
+                <p class="text">{{ shortTrip.odstavce[0].text }}
                 </p>
             </div>
-        </div>
-
-        <div class="shortTripDiv">
-            <img class="shortTripImg" src="./assets/images/img4.jpg" alt="picOfCountryside">
-            <h3>Vylet do přírody 2</h3>
-        </div>
-
-        <div class="shortTripDiv">
-            <img class="shortTripImg" src="./assets/images/img3.jpg" alt="picOfCountryside">
-            <h3>Vylet do prirody 3</h3>
-        </div>
-
-        <div class="shortTripDiv">
-            <img class="shortTripImg" src="./assets/images/img2.jpg" alt="picOfCountryside">
-            <h3>Vylet do prirody 4</h3>
         </div>
     </section>
 
@@ -62,6 +45,9 @@
     <mujVylet />-->
   </div>
 </template>
+
+
+
 
 <script>
 import HeaderCarousel from './components/HeaderCarousel.vue';
@@ -87,9 +73,12 @@ export default {
   },
 
   methods: {
-  }
+  },
 
- 
+  created: function() {
+    this.trips = require('./routes.json');
+    console.log('trips loaded...');
+  }
 }
 
 </script>
