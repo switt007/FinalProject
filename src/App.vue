@@ -68,6 +68,7 @@ import HeaderCarousel from './components/HeaderCarousel.vue';
 import Menu from './components/Menu.vue';
 import Vylet from './components/Vylet.vue';
 import SearchTrip from './components/SearchTrip.vue'; 
+import AddTrip from './components/AddTrip.vue'; 
 
 
 export default {
@@ -82,7 +83,8 @@ export default {
     'mojeMenu': Menu,
     'mujVylet': Vylet,
     'HeaderCarousel': HeaderCarousel,
-    'searchTrip': SearchTrip
+    'searchTrip': SearchTrip,
+    'addTrip': AddTrip
 
   },
 
