@@ -2,9 +2,9 @@
 
     <section class="menu">
         <ul>
-            <li v-on:click="changePage('searchTrip')">Vyhledej vylet</li>
-            <li v-on:click="changePage('addTrip')">Pridej vylet</li>
-            <li>Seznam vyletu</li>
+            <li v-on:click="changePage('/searchTrip')">Vyhledej vylet</li>
+            <li v-on:click="changePage('/addTrip')">Pridej vylet</li>
+            <li v-on:click="changePage('/listOfTrips')">Seznam vyletu</li>
         </ul>
     </section>  
     
@@ -13,10 +13,10 @@
 <script>
 export default {
   methods: {
-    changePage(activePage) {
-      this.$emit('change-page', activePage);
+    changePage(path) {
+      this.$router.push({path: path});
     }
-  }    
+  }   
 }
 </script>
 

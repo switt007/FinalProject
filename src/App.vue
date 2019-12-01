@@ -10,12 +10,12 @@
 
     <!-- MENU -->
 
-    <mojeMenu v-on:change-page="changePage($event)"/>  
-
+    <mojeMenu />  
 
     <!-- VYHLEDAVANI VYLETU -->
    
-   <searchTrip v-if="activePage==='searchTrip'"/>
+   <router-view></router-view>
+
 
    <!-- PRIDAVANI VYLETU -->
 
@@ -53,10 +53,9 @@
             <h3>Vylet do prirody 4</h3>
         </div>
     </section>
-    
 
     <!-- FOOTER -->
-
+    
     <footer>
     <p>Zdroje textu: <a href="https://www.gotobrno.cz/misto/moravsky-kras/">Jedna z nejvýznamnějších krasových oblastí ve střední Evropě.</a></p>
     <p>&copy; Jana Raczova & Alexandra Simkova</p>    
@@ -93,9 +92,7 @@ export default {
   },
 
   methods: {
-    changePage(event) {
-      this.activePage = event;
-    }
+    
   }
 }
 
@@ -263,12 +260,9 @@ a {
 /* DESKTOP */
 
 @media (min-width: 1000px) {
-    
+
     .text {
         display: block;
-    }
-
-    .elipsis {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
