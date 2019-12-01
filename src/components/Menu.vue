@@ -2,9 +2,9 @@
 
     <section class="menu">
         <ul>
-            <li v-on:click="changePage('/searchTrip')">Vyhledej vylet</li>
-            <li v-on:click="changePage('/addTrip')">Pridej vylet</li>
-            <li v-on:click="changePage('/listOfTrips')">Seznam vyletu</li>
+            <li v-on:click="changePage('/searchTrip')" v-bind:class="{aktivni:this.$route.path=='/searchTrip'}">Vyhledej výlet</li>
+            <li v-on:click="changePage('/addTrip')" v-bind:class="{aktivni:this.$route.path=='/addTrip'}">Přidej výlet</li>
+            <li v-on:click="changePage('/listOfTrips')" v-bind:class="{aktivni:this.$route.path=='/listOfTrips'}">Seznam výletů</li>
         </ul>
     </section>  
     
@@ -20,7 +20,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+
 
 </style>
 

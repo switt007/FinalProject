@@ -1,28 +1,29 @@
 <template>
-   <section class="searchTrip"> 
+  <section class="searchTrip"> 
+    <div class="filterRegion">
+      <h3 class="searchTripH3">VYBER KRAJ</h3>
+      <customSelect :options="['Hlavní město Praha', 'Středočeský kraj', 'Jihočeský kraj', 'Plzeňský kraj', 'Karlovarský kraj', 'Ústecký kraj', 'Liberecký kraj', 'Královéhradecký kraj', 'Pardubický kraj', 'Kraj Vysočina', 'Jihomoravský kraj', 'Olomoucký kraj', 'Zlínský kraj', 'Moravskoslezský kraj']"/>
+    </div>
 
-    <h3 class="searchTripH3">Vyber kraj</h3>
-    <customSelect :options="['Hlavni mesto Praha', 'Stredocesky kraj', 'Jihocesky kraj', 'Plzensky kraj', 'Karlovarsky kraj', 'Ustecky kraj', 'Liberecky kraj', 'Kralovehradecky kraj', 'Pardubicky kraj', 'Kraj Vysocina', 'Jihomoravsky kraj', 'Olomoucky kraj', 'Zlinsky kraj', 'Moravskoslezsky kraj']"/>
+    <div class="filterType">
+      <h3 class="searchTripH3">VYBER TYP</h3>
+      <form>
+        <label class="radios">Turistika
+          <input type="radio" name="tripType" value="turistika" checked="checked"> 
+          <span class="checkmark"></span>
+        </label>
+        <label class="radios">Cyklo
+          <input type="radio" name="tripType" value="cyklo"> 
+          <span class="checkmark"></span>
+        </label>
+        <label class="radios">In-line
+          <input type="radio" name="tripType" value="inline"> 
+          <span class="checkmark"></span>
+        </label>
+      </form>
+    </div>
 
-        <div class="filterType">
-            <h3 class="searchTripH3">Vyber typ</h3>
-            <form>
-                <label class="radios">Turistika
-                    <input type="radio" name="tripType" value="turistika" checked="checked"> 
-                    <span class="checkmark"></span>
-                </label>
-                <label class="radios">Cyklo
-                    <input type="radio" name="tripType" value="cyklo"> 
-                    <span class="checkmark"></span>
-                </label>
-                <label class="radios">In-line
-                    <input type="radio" name="tripType" value="inline"> 
-                    <span class="checkmark"></span>
-                </label>
-            </form>
-        </div>
-
-    </section>
+  </section>
 
 </template>
 
@@ -30,13 +31,19 @@
 import CustomSelect from "./CustomSelect.vue";
 
 export default {
-    components: {
+  components: {
     'customSelect': CustomSelect
+  },
+
+ created: function() {
+    this.trips = require('../routes.json');
+    console.log('trips loeaded...');
   }
+
 }
 </script>
 
-<style scoped>
+<style>
 
 .searchTripH3 {
     margin-left: 5%;

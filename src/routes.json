@@ -1,0 +1,67 @@
+[
+    { 
+        "id": 1, 
+        "autor": "JanaR",
+        "nazev": "Tlapka na Stezce 2019 - MID", 
+        "typ": 1, 
+        "kraj": 8, 
+        "okruh": 1,
+        "delka": 48,
+        "odstavce": [
+            { "text": "Lorem ipsum 111" }
+        ], 
+        "zajimavosti": [
+            { "text": "Lorem ipsum 111" }
+        ], 
+        "fotky": [
+            { "alt": "Krplov", "url": "FotkaKrplova.jpeg", "popisek": "asdfasdf asdfasfd" },
+            { "alt": "Oznice", "url": "FotkaOznice.jpeg", "popisek": "p98w4tuoskhgdsalkjhewpt " }
+        ],
+        "trasa_link": "https://mapy.cz/s/lovetekavu",
+        "authorized": 0
+    },    
+	{ 
+        "id": 2, 
+        "autor": "PetrS",
+        "nazev": "Blanicti rytiri", 
+        "typ": 2, 
+        "kraj": 7, 
+        "okruh": 0,
+        "delka": 2.6,
+        "odstavce": [
+            { "text": "Lorem ipsum 111" }
+        ], 
+        "zajimavosti": [
+            { "text": "Lorem ipsum 111" }
+        ], 
+        "fotky": [
+            { "alt": "Blanik", "url": "blanik1.jpeg", "popisek": "blanik popisek 1" },
+            { "alt": "Stavba", "url": "blanik2.jpeg", "popisek": "blanik popisek 2" },
+			{ "alt": "Socha", "url": "blanik3.jpeg", "popisek": "blanik popisek 3" }
+        ],
+        "trasa_link": "https://en.mapy.cz/s/bosagenuja",
+        "authorized": 0
+    },
+	{ 
+        "id": 3, 
+        "autor": "AlexandraM",
+        "nazev": "Boubin", 
+        "typ": 3, 
+        "kraj": 7, 
+        "okruh": 0,
+        "delka": 4.6,
+        "odstavce": [
+            { "text": "Lorem ipsum 111" }
+        ], 
+        "zajimavosti": [
+            { "text": "Lorem ipsum 111" }
+        ], 
+        "fotky": [
+            { "alt": "Boubin", "url": "boubin1.jpeg", "popisek": "blanik popisek 1" },
+            { "alt": "Rozhledna", "url": "boubin2.jpeg", "popisek": "blanik popisek 2" },
+			{ "alt": "Chodnik", "url": "boubin3.jpeg", "popisek": "blanik popisek 3" }
+        ],
+        "trasa_link": "https://en.mapy.cz/s/keperacora",
+        "authorized": 0
+    }
+]
