@@ -1,38 +1,22 @@
 <template>
   <div>
     <!-- HEADER -->
-
     <header>
         <h1 class="title">Outdoor nadšenci</h1>
         <p class="saying">"Alespoň jednou za rok navštiv místo, kde jsi nikdy předtím nebyl"</p>
         <p class="saying2">Dalajláma</p>
     </header>  
 
-    <!-- MENU -->
 
+    <!-- MENU -->
     <mojeMenu />  
 
-    <!-- VYHLEDAVANI A PRIDAVANI VYLETU -->
-   
-   <router-view></router-view>
 
-  
-
-    <!-- Divy s upoutavkou na vylety -->
-   <section class="shortTripSection">
-        <div class="shortTripDiv" v-for="(shortTrip, index) in trips" :key="index">
-            <!--<img class="shortTripImg" v-bind:src="'../public/images/'+shortTrip.fotky[0].url" alt="picOfCountryside">-->
-            <img class="shortTripImg" v-bind:src="'./assets/images/img2.jpg'" alt="picOfCountryside">
-            <h3>{{ shortTrip.nazev }}</h3>
-            <div class="elipsis">
-                <p class="text">{{ shortTrip.odstavce[0].text }}
-                </p>
-            </div>
-        </div>
-    </section>
+    <!-- VYHLEDAVANI A PRIDAVANI VYLETU NEBO DIVY S UPOUTAVKAMI NA UVODNI STRANCE -->
+    <router-view></router-view>
+    
 
     <!-- FOOTER -->
-    
     <footer>
     <p>Zdroje textu: <a href="https://www.gotobrno.cz/misto/moravsky-kras/">Jedna z nejvýznamnějších krasových oblastí ve střední Evropě.</a></p>
     <p>&copy; Jana Raczová & Alexandra Šimková</p>    
@@ -56,6 +40,7 @@ import Vylet from './components/Vylet.vue';
 import SearchTrip from './components/SearchTrip.vue'; 
 import AddTrip from './components/AddTrip.vue'; 
 import ListOfTrips from './components/ListOfTrips.vue'; 
+import ShortTrip from './components/ShortTrip.vue'
 
 
 export default {
@@ -72,7 +57,8 @@ export default {
     'HeaderCarousel': HeaderCarousel,
     'searchTrip': SearchTrip,
     'addTrip': AddTrip,
-    'listOfTrips': ListOfTrips
+    'listOfTrips': ListOfTrips,
+    'shortTrip': ShortTrip
 
   },
 

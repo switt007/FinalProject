@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import SearchTrip from './components/SearchTrip.vue';
 import AddTrip from './components/AddTrip.vue';
 import ListOfTrips from './components/ListOfTrips.vue';
+import ShortTrip from './components/ShortTrip.vue';
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,10 @@ const router = new VueRouter({
     {
       path: '/listOfTrips',
       component: ListOfTrips
+    },
+    {
+      path: '/',
+      component: ShortTrip
     }
   ]
 
