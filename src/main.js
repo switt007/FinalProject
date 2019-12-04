@@ -6,6 +6,7 @@ import SearchTrip from './components/SearchTrip.vue';
 import AddTrip from './components/AddTrip.vue';
 import ListOfTrips from './components/ListOfTrips.vue';
 import ShortTrip from './components/ShortTrip.vue';
+import Detail from './views/Detail.vue';
 
 Vue.config.productionTip = false
 
@@ -28,6 +29,12 @@ const router = new VueRouter({
     {
       path: '/',
       component: ShortTrip
+    },
+    {
+      path: '/detail/:tripID',
+      name: 'detail',
+      props: true,
+      component: Detail
     }
   ]
 

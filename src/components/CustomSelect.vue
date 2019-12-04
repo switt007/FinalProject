@@ -12,6 +12,11 @@
   </div>
 </template>
 
+
+
+
+
+
 <script>
 export default {
   props: {
@@ -36,6 +41,11 @@ export default {
   }
 };
 </script>
+
+
+
+
+
 
 <style>
 .custom-select {

@@ -4,7 +4,7 @@
       <div class="filterRegion">
         <h3 class="searchTripH3">VYBER KRAJ</h3>
         <customSelect
-          :options="['Celá Česká republika', 'Hlavní město Praha', 'Středočeský kraj', 'Jihočeský kraj', 'Plzeňský kraj', 'Karlovarský kraj', 'Ústecký kraj', 'Liberecký kraj', 'Královéhradecký kraj', 'Pardubický kraj', 'Kraj Vysočina', 'Jihomoravský kraj', 'Olomoucký kraj', 'Zlínský kraj', 'Moravskoslezský kraj']"
+          :options="['Celá Česká republika', 'Hlavní město Praha', 'Středočeský kraj', 'Jihočeský kraj', 'Plzeňský kraj', 'Karlovarský kraj', 'Ústecký kraj', 'Liberecký kraj', 'Královéhradecký kraj', 'Pardubický kraj', 'Kraj Vysočina', 'Jihomoravský kraj', 'Olomoucký kraj', 'Zlínský kraj', 'Moravskoslezský kraj', 'Zahraničí']"
           v-on:input="filterTrips($event)"
         />
       </div>
@@ -14,7 +14,13 @@
         <form>
           <label class="radios">
             Turistika
-            <input type="radio" name="tripType" value="1" checked="checked" v-model="tripTyp" />
+            <input
+              type="radio"
+              name="tripType"
+              value="1"
+              checked="checked"
+              v-model="tripTyp"
+            />
             <span class="checkmark"></span>
           </label>
           <label class="radios">
@@ -57,15 +63,20 @@ export default {
       filteredTrips: [],
       trips: null,
       tripTyp: 1,
-      tripKraj: 0
-    }
+      tripKraj: 0,
+      singleTrip: {}
+    };
   },
 
   watch: {
     tripTyp: function() {
-      this.filteredTrips = (this.tripKraj === 0 ? this.trips.filter(trip => trip.typ == this.tripTyp): this.trips.filter(trip => trip.kraj == this.tripKraj).filter(trip => trip.typ == this.tripTyp));
-
-    }   
+      this.filteredTrips =
+        this.tripKraj === 0
+          ? this.trips.filter(trip => trip.typ == this.tripTyp)
+          : this.trips
+              .filter(trip => trip.kraj == this.tripKraj)
+              .filter(trip => trip.typ == this.tripTyp);
+    }
   },
 
   components: {
@@ -79,8 +90,13 @@ export default {
   methods: {
     filterTrips(event) {
       this.tripKraj = event.index;
-      this.filteredTrips = (this.tripKraj === 0 ? this.trips.filter(trip => trip.typ == this.tripTyp) : this.trips.filter(trip => trip.kraj == event.index).filter(trip => trip.typ == this.tripTyp));
-    } 
+      this.filteredTrips =
+        this.tripKraj === 0
+          ? this.trips.filter(trip => trip.typ == this.tripTyp)
+          : this.trips
+              .filter(trip => trip.kraj == event.index)
+              .filter(trip => trip.typ == this.tripTyp);
+    }
   }
 };
 </script>
