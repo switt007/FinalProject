@@ -33,14 +33,37 @@
       v-model="delka"
       placeholder="Zadej délku"
     />
-    Popis: <textarea v-model="popisVyletu" placeholder="krátký popis výletu"></textarea>
+   
+
+Popis výletu:
+   <ul>
+      <li v-for="(odstavec, index) in odstavce" v-bind:key="index">
+        <textarea v-model="odstavec.text"></textarea>  
+        <button v-on:click="deleteRow(index)" class="delete">Smazat odstavec</button>
+      </li>
+    </ul>
+    
+    <button v-on:click="pridejOdstavec" class="button">Přidat odstavec</button>
+
+
     Zajímavosti: <textarea v-model="zajimavosti" placeholder="krátký popis výletu"></textarea>
+
     Trasa: <input type="text" id="pridejVylet_nadpis" v-model="trasa" placeholder="Sem zadej odkaz z mapy.cz"/>
+    
+    
+    <input type="file" ref="Fotky" multiple v-on:change="handleFiles" value="Vyber fotky" />
+
+
 
     <hr />
     <div class="button_center">
-    <button v-on:click="pridatVylet" class="button_addTrip">PŘIDAT VÝLET</button>
+    <div v-on:click="pridatVylet" ref="myFiles" class="button_addTrip">PŘIDAT VÝLET</div>
     </div>
+
+<div class="alert" v-bind:class="savingOK ? 'visible' : 'hidden'">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  This is an alert box.
+</div>
   </div>
 
 </template>
@@ -83,17 +106,52 @@ export default {
 
       delka: "",
 
-      popisVyletu: "",
+      odstavce: [{
+        text: ''
+      }],
 
       zajimavosti: "",
 
       trasa: "",
 
-      fotky: ""
+      fotky: [],
+
+      savingOK: false,
     };
   },
 
   methods: {
+    pridejOdstavec() {
+      this.odstavce.push({
+        text: ''
+      })
+    },
+    deleteRow(index) {
+      this.odstavce.splice(index,1)
+    },
+
+    handleFiles() {
+      this.fotky = this.$refs.Fotky.files
+
+      const formData = new FormData();
+      
+      this.fotky.forEach(ele => {
+        formData.append('file', ele) //event.target.files[0] data going here
+      });
+
+      var obj = {
+        method: 'POST',
+        body: formData,
+        credentials: 'same-origin',
+      };
+
+      fetch('http://img.dogtrekking.cz/add', obj)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+      });
+    },
+
     pridatVylet() {
       let newTrip = {
         autor: this.autor,
@@ -101,9 +159,7 @@ export default {
         typ: this.vybranyTyp,
         kraj: this.vybranyKraj,
         okruh: this.okruh === 'yes' ? 1 : 0,
-        odstavce: [
-          { text: this.popisVyletu },
-        ],
+        odstavce: this.odstavce,
         fotky: [
           {
             alt: "Krplov",
@@ -129,12 +185,15 @@ export default {
         "Content-Type": "application/json"
       };
 
+      var vm = this;
       fetch("http://rest.dogtrekking.cz/trips/add", obj)
         .then(function(res) {
           return res.json();
         })
         .then(function(response) {
-          alert("ok");
+
+          vm.savingOK=true;
+
         });
     }
   }
@@ -166,12 +225,52 @@ export default {
   font-weight: 700;
   border: 0;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.button_addTrip:hover {
+  background-image: linear-gradient(to top left,#b700ff,#250075);
 
 }
 
 .button_center {
   display: flex;
   justify-content: center;
+}
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-image: linear-gradient(to top left,#9dff00,#007510);
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
 }
 
 .searchTripH3 {
