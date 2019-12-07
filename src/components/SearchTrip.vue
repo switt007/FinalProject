@@ -29,7 +29,7 @@
             <span class="checkmark"></span>
           </label>
           <label class="radios">
-            In-line
+            Ostatní
             <input type="radio" name="tripType" value="3" v-model="tripTyp" />
             <span class="checkmark"></span>
           </label>

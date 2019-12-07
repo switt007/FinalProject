@@ -173,6 +173,7 @@ header {
   border-radius: 5px;
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .shortTripImg {
@@ -196,6 +197,11 @@ a {
 .searchTrip {
   margin: 10%;
   color: #463f3a;
+}
+
+p {
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 /* TABLET */
@@ -234,7 +240,7 @@ a {
   .shortTripSection {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: 0 10% 7% 10%;
+    margin: 10% 10% 7% 10%;
   }
 
   .shortTripDiv {
@@ -253,7 +259,7 @@ a {
     justify-content: space-evenly;
     margin-bottom: 0;
     padding-bottom: 0;
-    padding-left: 3%;
+    max-width: 960px;
   }
 
   .filterRegion,

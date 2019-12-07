@@ -41,8 +41,9 @@
     </section>
 
     <!-- FOTKY -->
-    <section class="photos" v-for="(fotka, index2) in shortTrip.fotky" v-bind:key="index2">
-      <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" v-bind:alt="fotka.alt" />
+    <!--<section class="photos" v-for="(fotka, index2) in shortTrip.fotky" v-bind:key="index2">-->
+    <section class="photos">
+      <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="fotka.alt" />
       <img class="shortTripImg" v-bind:src="'/Images/img3.jpg'" alt="picOfCountryside" />
       <img class="shortTripImg" v-bind:src="'/Images/img4.jpg'" alt="picOfCountryside" />
       <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="picOfCountryside" />
@@ -158,6 +159,7 @@ export default {
     font-size: 24px;
     margin-top: 5%;
     margin-bottom: 3%;
+    margin-left: 7%;
   }
 
   .tripHeader {
@@ -181,8 +183,26 @@ export default {
     font-size: 42px;
   }
 
-  .photos {
-    grid-template-columns: repeat(3, 1fr);
+  body {
+    background-color: #F4F3EE;
   }
+
+  .photos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail {
+    max-width: 960px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2), -3px 0 5px rgba(0, 0, 0, 0.2),
+      0 3px 5px -5px rgba(0, 0, 0, 0.2);
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  .listOfParameters {
+    padding-left: 5%;
+  }  
 }
 </style>
