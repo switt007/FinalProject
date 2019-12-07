@@ -21,7 +21,7 @@
       </section>
 
       <!-- MAPA -->
-      <section class="map"></section>
+      <maps />
     </div>
 
     <!-- TEXT 
@@ -35,23 +35,28 @@
     </section> -->
 
     <!-- TEXT -->
-
-    <section class="tripText" v-for="(paragraph, index) in text" v-bind:key="index">
-      <p>{{ paragraph }}</p>
+    <section class="tripTextSection">
+      <div class="tripText" v-for="(paragraph, index) in text" v-bind:key="index">
+        <p>{{ paragraph }}</p>
+      </div>
     </section>
 
     <!-- FOTKY -->
-    <!--<section class="photos" v-for="(fotka, index2) in shortTrip.fotky" v-bind:key="index2">-->
+    <!--<section class="photos" v-for="(fotka, index2) in shortTrip.fotky" v-bind:key="index2">
     <section class="photos">
-      <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="fotka.alt" />
-      <img class="shortTripImg" v-bind:src="'/Images/img3.jpg'" alt="picOfCountryside" />
-      <img class="shortTripImg" v-bind:src="'/Images/img4.jpg'" alt="picOfCountryside" />
-      <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="picOfCountryside" />
-    </section>
+        <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="fotka.alt" />
+        <img class="shortTripImg" v-bind:src="'/Images/img3.jpg'" alt="picOfCountryside" />
+        <img class="shortTripImg" v-bind:src="'/Images/img4.jpg'" alt="picOfCountryside" />
+        <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="picOfCountryside" />
+    </section>-->
+    <carousel />
   </div>
 </template>
 
 <script>
+import Maps from '@/components/Maps.vue';
+import Carousel from '@/components/Carousel.vue';
+
 export default {
   data: function() {
     return {
@@ -64,7 +69,13 @@ export default {
       text: []
     };
   },
-  props: ["tripID"],
+
+  components: {
+    'maps': Maps,
+    'carousel': Carousel
+  },
+
+  props: ['tripID'],
   /*
   created: function getAllTrips_IncludesUnauthorized() {
     fetch("http://rest.dogtrekking.cz/trips/1")
@@ -116,6 +127,8 @@ export default {
 .tripTitle {
   margin-bottom: 0;
   font-size: 28px;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .divider {
@@ -128,15 +141,20 @@ export default {
 }
 
 .listOfParameters {
-  margin: 10% auto 10% 5%;
+  margin: 15% auto 10% 5%;
   font-size: 20px;
 }
 
 .tripText {
   padding-left: 8%;
   padding-right: 8%;
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+.tripTextSection {
+  margin-top: 20%;
   margin-bottom: 10%;
-  margin-top: 5%;
 }
 
 /* TABLET */
@@ -166,13 +184,12 @@ export default {
     padding-top: 8%;
   }
 
-  .photos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .shortTripImg {
     display: block;
+  }
+
+  .tripTextSection {
+    margin-top: 5%;
   }
 }
 
@@ -185,10 +202,6 @@ export default {
 
   body {
     background-color: #F4F3EE;
-  }
-
-  .photos {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .detail {

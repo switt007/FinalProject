@@ -35,13 +35,13 @@
 
 
 <script>
-import HeaderCarousel from "./components/HeaderCarousel.vue";
+import Carousel from "./components/Carousel.vue";
 import Menu from "./components/Menu.vue";
 import SearchTrip from "./components/SearchTrip.vue";
 import AddTrip from "./components/AddTrip.vue";
 import ListOfTrips from "./components/ListOfTrips.vue";
 import ShortTrip from "./components/ShortTrip.vue";
-import Detail from "./views/Detail.vue";
+import Detail from "./components/Detail.vue";
 
 export default {
   data: function() {
@@ -53,7 +53,7 @@ export default {
 
   components: {
     'mojeMenu': Menu,
-    'HeaderCarousel': HeaderCarousel,
+    'Carousel': Carousel,
     'searchTrip': SearchTrip,
     'addTrip': AddTrip,
     'listOfTrips': ListOfTrips,
@@ -233,6 +233,8 @@ p {
 
   .liMenu {
     margin: 0 2%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
     font-size: 24px;
     border-radius: 0;
   }
@@ -249,8 +251,8 @@ p {
   }
 
   footer {
-    font-size: 16px;
-    padding: 1%;
+    font-size: 20px;
+    padding: 5%;
     text-align: center;
   }
 
