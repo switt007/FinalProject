@@ -17,9 +17,10 @@
     <footer>
       <p>
         Zdroje textu:
-        <a
-          href="https://www.gotobrno.cz/misto/moravsky-kras/"
-        >Jedna z nejvýznamnějších krasových oblastí ve střední Evropě.</a>
+        <a href="https://www.gotobrno.cz/misto/moravsky-kras/">Moravský kras, </a>
+        <a href="https://www.gotobrno.cz/misto/palava/">Pálava, </a>
+        <a href="https://www.gotobrno.cz/misto/slavkovske-bojiste-a-zamek/"> Slavkov, </a>
+        <a href="https://www.vitalia.cz/clanky/tip-na-vylet-z-pardubic-na-kole-do-zeleznych-hor/">Železné hory, </a>
       </p>
       <p>&copy; Jana Raczová & Alexandra Šimková</p>
     </footer>
@@ -51,23 +52,27 @@ export default {
   },
 
   components: {
-    mojeMenu: Menu,
-    HeaderCarousel: HeaderCarousel,
-    searchTrip: SearchTrip,
-    addTrip: AddTrip,
-    listOfTrips: ListOfTrips,
-    shortTrip: ShortTrip
+    'mojeMenu': Menu,
+    'HeaderCarousel': HeaderCarousel,
+    'searchTrip': SearchTrip,
+    'addTrip': AddTrip,
+    'listOfTrips': ListOfTrips,
+    'shortTrip': ShortTrip
   },
 
-  methods: {},
+   created: function() {
+    this.trips = require('./routes.json');
+    console.log('trips loaded...');
+  }
 
-  created: function getAllTrips_IncludesUnauthorized() {
+  /*created: function getAllTrips_IncludesUnauthorized() {
     fetch("http://rest.dogtrekking.cz/trips/1")
       .then(response => response.json())
       .then(response => {
         this.trips = response;
+        console.log(this.trips);
       });
-  }
+  }*/
 };
 </script>
 
@@ -229,7 +234,7 @@ a {
   .shortTripSection {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: 7% 10% 7% 10%;
+    margin: 0 10% 7% 10%;
   }
 
   .shortTripDiv {
@@ -246,6 +251,9 @@ a {
   .searchTrip {
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-left: 3%;
   }
 
   .filterRegion,
@@ -253,18 +261,13 @@ a {
     flex: 1 1 auto;
   }
 
+  .filterType {
+    margin-bottom: 10%;
+  }
+
   .custom-select {
     margin-left: 5%;
     width: 80%;
-  }
-
-  .searchTrip {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .shortTripSection {
-    margin-top: 0;
   }
 }
 

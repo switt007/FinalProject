@@ -38,9 +38,9 @@
     </section>
 
     <section class="shortTripSection">
-      <div class="shortTripDiv" v-for="(shortTrip, index) in filteredTrips" :key="index">
+      <div class="shortTripDiv" v-for="(shortTrip, index) in filteredTrips" :key="index" v-on:click="goToDetail(shortTrip)">
         <!--<img class="shortTripImg" v-bind:src="'../public/images/'+shortTrip.fotky[0].url" alt="picOfCountryside">-->
-        <img class="shortTripImg" v-bind:src="'./assets/images/img2.jpg'" alt="picOfCountryside" />
+        <img class="shortTripImg" v-bind:src="'./images/img1.jpg'" alt="picOfCountryside" />
         <h3>{{ shortTrip.nazev }}</h3>
         <div class="elipsis">
           <p class="text">{{ shortTrip.odstavce[0].text }}</p>
@@ -96,6 +96,9 @@ export default {
           : this.trips
               .filter(trip => trip.kraj == event.index)
               .filter(trip => trip.typ == this.tripTyp);
+    },
+     goToDetail(shortTrip) {
+      this.$router.push({ path: "/detail/" + shortTrip.id });
     }
   }
 };

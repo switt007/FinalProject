@@ -1,89 +1,100 @@
 [ 
     { 
         "id": 1, 
-        "autor": "JanaR",
-        "nazev": "Tlapka na Stezce 2019 - MID", 
+        "autor": "SasaS",
+        "nazev": "Putování po Moravském krasu", 
         "typ": 1, 
-        "kraj": 0, 
-        "okruh": 1,
-        "delka": 48,
-        "odstavce": [
-            { "text": "Pozoruhodné jsou třeba také krasové kaňony Pustý a Suchý žleb a Rudické propadání, kde pod zemí mizí Jedovnický potok a zpět na povrch vyvěrá až po dvanácti kilometrech u Býčí skály." }
-        ], 
-        "zajimavosti": [
-            { "text": "Lorem ipsum 111" }
-        ], 
-        "fotky": [
-            { "alt": "Krplov", "url": "FotkaKrplova.jpeg", "popisek": "asdfasdf asdfasfd" },
-            { "alt": "Oznice", "url": "FotkaOznice.jpeg", "popisek": "p98w4tuoskhgdsalkjhewpt " }
-        ],
-        "trasa_link": "https://mapy.cz/s/lovetekavu",
-        "authorized": 0
-    },    
-	{ 
-        "id": 2, 
-        "autor": "PetrS",
-        "nazev": "Blanicti rytiri", 
-        "typ": 2, 
-        "kraj": 7, 
-        "okruh": 0,
-        "delka": 2.6,
-        "odstavce": [
-            { "text": "Z více než tisícovky jeskyní je jich přístupných pět. Punkevní jeskyně nabízejí možnost plavby po podzemní říčce spojenou s prohlídkou dna Machochy. Kateřinská jeskyně je známá svými výjimečnými hůlkovými stalagmity. Balcarka vyniká bohatou barevnou krápníkovou výzdobou. Sloupsko-šošůvské jeskyně tvoří mohutné chodby a podzemní propasti. Výpustek má zase za sebou bohatou vojenskou historii." }
-        ], 
-        "zajimavosti": [
-            { "text": "Lorem ipsum 111" }
-        ], 
-        "fotky": [
-            { "alt": "Blanik", "url": "blanik1.jpg", "popisek": "blanik popisek 1" },
-            { "alt": "Stavba", "url": "blanik2.jpg", "popisek": "blanik popisek 2" },
-			{ "alt": "Socha", "url": "blanik3.jpg", "popisek": "blanik popisek 3" }
-        ],
-        "trasa_link": "https://en.mapy.cz/s/bosagenuja",
-        "authorized": 0
-    },
-	{ 
-        "id": 3, 
-        "autor": "SasaS",
-        "nazev": "Boubin", 
-        "typ": 3, 
-        "kraj": 7, 
-        "okruh": 0,
-        "delka": 4.6,
-        "odstavce": [
-            { "text": "Moravský kras je protkán hustou sítí pěších i cyklistických tras, na kterých lze narazit na další zajímavosti, např. zříceniny hradů, poutní kostely nebo rozhledny. V oblasti je také několik často navštěvovaných horolezeckých terénů." }
-        ], 
-        "zajimavosti": [
-            { "text": "Lorem ipsum 111" }
-        ], 
-        "fotky": [
-            { "alt": "Boubin", "url": "boubin1.jpg", "popisek": "blanik popisek 1" },
-            { "alt": "Rozhledna", "url": "boubin2.jpg", "popisek": "blanik popisek 2" },
-			{ "alt": "Chodnik", "url": "boubin3.jpg", "popisek": "blanik popisek 3" }
-        ],
-        "trasa_link": "https://en.mapy.cz/s/keperacora",
-        "authorized": 0
-    },
-    { 
-        "id": 4, 
-        "autor": "SasaS",
-        "nazev": "Výlet do Moravského krasu", 
-        "typ": 2, 
         "kraj": 11, 
-        "okruh": 1,
+        "okruh": 0,
         "delka": 19,
         "odstavce": [
-            {
-                "text": "Severně od Brna se rozkládá Chráněná krajinná oblast Moravský kras. Na ploše 92 km2 se vyskytují četné unikáty živé i neživé přírody. Lze se např. podívat do Macochy, téměř 140 metrů hluboké propasti, tzv. light hole, jež je největší svého druhu ve střední Evropě. Horní část propasti je dlouhá 174 a široká 76 metrů."
-            }
+            { "text": "Severně od Brna se rozkládá Chráněná krajinná oblast Moravský kras. Na ploše 92 km2 se vyskytují četné unikáty živé i neživé přírody. Lze se např. podívat do Macochy, téměř 140 metrů hluboké propasti, tzv. light hole, jež je největší svého druhu ve střední Evropě. Horní část propasti je dlouhá 174 a široká 76 metrů. Z více než tisícovky jeskyní je jich přístupných pět. Punkevní jeskyně nabízejí možnost plavby po podzemní říčce spojenou s prohlídkou dna Machochy. Kateřinská jeskyně je známá svými výjimečnými hůlkovými stalagmity. Balcarka vyniká bohatou barevnou krápníkovou výzdobou. Sloupsko-šošůvské jeskyně tvoří mohutné chodby a podzemní propasti. Výpustek má zase za sebou bohatou vojenskou historii. Pozoruhodné jsou třeba také krasové kaňony Pustý a Suchý žleb a Rudické propadání, kde pod zemí mizí Jedovnický potok a zpět na povrch vyvěrá až po dvanácti kilometrech u Býčí skály. Moravský kras je protkán hustou sítí pěších i cyklistických tras, na kterých lze narazit na další zajímavosti, např. zříceniny hradů, poutní kostely nebo rozhledny. V oblasti je také několik často navštěvovaných horolezeckých terénů." }
         ], 
         "zajimavosti": [
-            { "text": "Severně od Brna se rozkládá Chráněná krajinná oblast Moravský kras. Na ploše 92 km2 se vyskytují četné unikáty živé i neživé přírody. Lze se např. podívat do Macochy, téměř 140 metrů hluboké propasti, tzv. light hole, jež je největší svého druhu ve střední Evropě. Horní část propasti je dlouhá 174 a široká 76 metrů." }
+            { "text": "Jedna z nejvýznamnějších krasových oblastí ve střední Evropě." }
         ], 
         "fotky": [
-            { "alt": "kras", "url": "img1.jpg", "popisek": "kras" }
+            { "alt": "Kras", "url": "img1.jpg", "popisek": "Kras" },
+            { "alt": "Kras", "url": "img3.jpg", "popisek": "Kras" },
+            { "alt": "Kras", "url": "img4.jpg", "popisek": "Kras" }
         ],
         "trasa_link": "https://en.mapy.cz/s/lefehenogo",
         "authorized": 0
+    },
+        { 
+        "id": 2, 
+        "autor": "SasaS",
+        "nazev": "Cesta nejen po moravských vinicích", 
+        "typ": 1, 
+        "kraj": 11, 
+        "okruh": 1,
+        "delka": 42,
+        "odstavce": [
+            { "text": "Název Pálava je synonymem pro Pavlovské vrchy. Jde o vápencový útvar táhnoucí se od obce Pavlov dvacet kilometrů na jih okolo Mikulova až k hranicím s Rakouskem. Jde o nejsušší a nejteplejší oblast Česka, jež má téměř středomořský charakter. Krajinu tvoří rozlehlá úrodná pole, vinice a bělostná vápencová skaliska. Pálava je také výjimečná bohatostí druhů rostlin a hmyzu." },
+                { "text": "Za návštěvu stojí zříceniny Dívčích hradů ze 13. století a skalního Sirotčího hrádku z přelomu 13. a 14. století. Nepřehlédnutelnou dominantou je i mikulovský Svatý kopeček s poutním kostelem sv. Šebestiana. V samotném Mikulově je pozoruhodné historické jádro a zámek na výrazném skalním útesu."},
+                { "text": "Zájemce o historii určitě přiláká Archeopark v Pavlově věnující se osídlení lokality v období před více než 30 tisíci let. Díky významným archeologickým nálezům se lze přiblížit pochopení tomu, jak naši předci lovili mamuty, kdo vytvořil Věstonickou venuši, jaké je tajemství záhadného trojhrobu apod."}
+        ], 
+        "zajimavosti": [
+            { "text": "Živá i neživá příroda, památky a historie u jižní hranice ČR." }
+        ], 
+        "fotky": [
+            { "alt": "Palava", "url": "dawid-zawila-L3sh5N6Lqzo-unsplash.jpg", "popisek": "Palava" },
+            { "alt": "Palava", "url": "kym-ellis-aF1NPSnDQLw-unsplash.jpg", "popisek": "Palava" },
+            { "alt": "Palava", "url": "sven-wilhelm-2cRXSWyMHA8-unsplash.jpg", "popisek": "Palava" },
+            { "alt": "Palava", "url": "zdenek-machacek-8V-5Y_Mdbn4-unsplash.jpg", "popisek": "Palava" }
+        ],
+        "trasa_link": "https://en.mapy.cz/s/nehuzuhoro",
+        "authorized": 0
+    },
+    { 
+        "id": 3, 
+        "autor": "SasaS",
+        "nazev": "Za Napoleonem do Slavkova", 
+        "typ": 1, 
+        "kraj": 11, 
+        "okruh": 1,
+        "delka": 74,
+        "odstavce": [
+            { "text": "Jen několik kilometrů od města se nachází oblast, kde se 2. prosince 1805 odehrál střet francouzských vojsk s rakousko-ruskou koalicí, který změnil tvář Evropy. Silný zážitek nabízí návštěvníkům Mohyla míru vybudovaná na počest obětí bitvy u Slavkova na Prackém kopci. Centrum někdejšího bojiště se změnilo v pietní místo a memento válek." },
+                { "text": "Jednu z nejvýznamnějších událostí 19. století připomíná i několik dalších pomníků. Například na vrchu Žuráň, kde bylo velitelské stanoviště Napoleona I. Bonaparta, je kubistický památník s plastickou bronzovou mapou znázorňující postavení armád před rozhodujícím střetnutím. Na vrchu Santon, opěrném bodu levého křídla francouzské armády a stanovišti dělostřelců, stojí kaplička zasvěcená Panně Marii Sněžné z roku 1832. Na poli pod Santonem se každoročně pořádá velkolepá rekonstrukce bitvy."},
+                { "text": "Zámek ve Slavkově u Brna můžeme označit za kousek Francie v těsném sousedství Brna. Monumentální barokní stavba, která byla svědkem uzavření příměří, je spjata zejména s rodem Kouniců. Dnes tu lze navštívit reprezentativní zdobené sály nebo zámecký park."}
+        ], 
+        "zajimavosti": [
+            { "text": "Místo slavného Napoleonova vítězství leží jihovýchodně od Brna." }
+        ], 
+        "fotky": [
+            { "alt": "Napoleon", "url": "arpa-sarian-TeF622UECfY-unsplash.jpg", "popisek": "Napoleon" },
+            { "alt": "Napoleon", "url": "liam-pozz-Iwo1GuxCeGg-unsplash.jpg", "popisek": "Napoleon" },
+            { "alt": "Napoleon", "url": "riccardo-chiarini-_C-ZxPF-BtQ-unsplash.jpg", "popisek": "Napoleon" },
+            { "alt": "Napoleon", "url": "thomas-schweighofer-capF80PH_6M-unsplash.jpg", "popisek": "Napoleon"}
+        ],
+        "trasa_link": "https://en.mapy.cz/s/gocotedoju",
+        "authorized": 0
+    },
+    {
+    "id": 4, 
+        "autor": "SasaS",
+        "nazev": "Z Pardubic do Zelezných hor", 
+        "typ": 1, 
+        "kraj": 9, 
+        "okruh": 1,
+        "delka": 76,
+        "odstavce": [
+            { "text": "Jako dítě jsem do kopců pod Železnými horami zabrousil na kole celkem pravidelně. Z Pardubic to není zase tak daleko, krajina se zvedá už nějakých patnáct kilometrů od města. Něco jiného je ale toulat se v podhůří celkem nízkých Železných hor, a vyjet si přímo do jejich centra – k přehradní nádrži Seč, která je častým cílem mnoha Pardubáků a dalších Východočechů." },
+                { "text": "Nejjednodušší a nejrychlejší cesta vede po hlavní silnici z Pardubic do Chrudimi, Slatiňan a přes Nasavrky směrem na Horní Bradlo. Pro cyklisty je ale málo atraktivní, a hlavně nebezpečná: je totiž hodně frekventovaná a často tu potkáte nákladní auta a kamiony. Protentokrát jsem tedy zvolil vedlejší silnice a z Pardubic se vydal přes Nemošice a Ostřešany do Chrudimi. Okresní silničky vedou poli, a na auto tu narazíte málokdy."},
+                { "text": "Cyklovýlet do Železných hor vám zabere čtyři až pět hodin času. Není to žádná jednoduchá trasa, rozhodně se nehodí pro rodiny s dětmi. Pro trénink fyzičky se ale hodí náramně."}
+        ], 
+        "zajimavosti": [
+            { "text": "Pardubicko je rovinaté jako placka, takže tu potkáte opravdu hodně cyklistů. Vyjet směrem na Železné hory ale znamená zabojovat s kopci a neustálou ztrátou výšky, kterou musí cyklista jinde „dohnat“. Cyklistické kolečko na přehradní nádrž Seč a okolo vysílače Krásné zpátky do Pardubic dá zabrat." }
+        ], 
+        "fotky": [
+            { "alt": "Pardubice", "url": "arpa-sarian-TeF622UECfY-unsplash.jpg", "popisek": "Pardubice" },
+            { "alt": "Pardubice", "url": "liam-pozz-Iwo1GuxCeGg-unsplash.jpg", "popisek": "Pardubice" },
+            { "alt": "Pardubice", "url": "riccardo-chiarini-_C-ZxPF-BtQ-unsplash.jpg", "popisek": "Pardubice" },
+            { "alt": "Pardubice", "url": "thomas-schweighofer-capF80PH_6M-unsplash.jpg", "popisek": "Pardubice"}
+        ],
+        "trasa_link": "https://en.mapy.cz/s/netoferofu",
+        "authorized": 0								
     }
+    
 ]
