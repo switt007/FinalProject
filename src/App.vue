@@ -289,6 +289,7 @@ p {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: normal;
   }
 
   .shortTripSection {

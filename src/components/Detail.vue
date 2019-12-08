@@ -1,11 +1,13 @@
 <template>
   <div class="detail">
+    
     <!-- HLAVICKA S NAZVEM A AUTOREM -->
     <section class="tripHeader">
       <h1 class="tripTitle">{{ shortTrip.nazev }}</h1>
       <hr class="divider" />
       <p class="author">{{ shortTrip.autor }}</p>
     </section>
+
 
     <div class="flexContainer">
       <!-- SEZNAM PARAMETRU VYLETU -->
@@ -21,18 +23,9 @@
       </section>
 
       <!-- MAPA -->
-      <maps />
+      <maps class="maps" v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]"/>
     </div>
 
-    <!-- TEXT 
-
-    <section class="tripText" v-for="(text, index) in shortTrip.odstavce" v-bind:key="index">
-      <p>{{ text.text }}</p>
-      <p>Severně od Brna se rozkládá Chráněná krajinná oblast Moravský kras. Na ploše 92 km2 se vyskytují četné unikáty živé i neživé přírody. Lze se např. podívat do Macochy, téměř 140 metrů hluboké propasti, tzv. light hole, jež je největší svého druhu ve střední Evropě. Horní část propasti je dlouhá 174 a široká 76 metrů.</p>
-      <p>Z více než tisícovky jeskyní je jich přístupných pět. Punkevní jeskyně nabízejí možnost plavby po podzemní říčce spojenou s prohlídkou dna Machochy. Kateřinská jeskyně je známá svými výjimečnými hůlkovými stalagmity. Balcarka vyniká bohatou barevnou krápníkovou výzdobou. Sloupsko-šošůvské jeskyně tvoří mohutné chodby a podzemní propasti. Výpustek má zase za sebou bohatou vojenskou historii.</p>
-      <p>Pozoruhodné jsou třeba také krasové kaňony Pustý a Suchý žleb a Rudické propadání, kde pod zemí mizí Jedovnický potok a zpět na povrch vyvěrá až po dvanácti kilometrech u Býčí skály.</p>
-      <p>Moravský kras je protkán hustou sítí pěších i cyklistických tras, na kterých lze narazit na další zajímavosti, např. zříceniny hradů, poutní kostely nebo rozhledny. V oblasti je také několik často navštěvovaných horolezeckých terénů.</p>
-    </section> -->
 
     <!-- TEXT -->
     <section class="tripTextSection">
@@ -42,14 +35,7 @@
     </section>
 
     <!-- FOTKY -->
-    <!--<section class="photos" v-for="(fotka, index2) in shortTrip.fotky" v-bind:key="index2">
-    <section class="photos">
-        <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="fotka.alt" />
-        <img class="shortTripImg" v-bind:src="'/Images/img3.jpg'" alt="picOfCountryside" />
-        <img class="shortTripImg" v-bind:src="'/Images/img4.jpg'" alt="picOfCountryside" />
-        <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="picOfCountryside" />
-    </section>-->
-    <carousel />
+    <carousel v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]"/>
   </div>
 </template>
 
@@ -103,6 +89,7 @@ export default {
   },
   watch: {
     tripID: function() {
+      console.log('Detail.vue watch tripID: tripID = ' + this.tripID);
       this.shortTrip = this.trips.filter(
         shortTrip2 => shortTrip2.id == this.tripID
       )[0];
@@ -166,18 +153,23 @@ export default {
 
   .flexContainer {
     display: flex;
+    margin-top: 8%;
   }
 
-  .map,
+  .maps,
   .listOfParameters {
     flex: 1 1 auto;
   }
 
   .listOfParameters {
     font-size: 24px;
-    margin-top: 5%;
+    margin-top: 0;
     margin-bottom: 3%;
     margin-left: 7%;
+  }
+
+  .maps {
+    margin-top: 3%;
   }
 
   .tripHeader {

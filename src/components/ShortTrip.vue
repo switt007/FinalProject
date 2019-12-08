@@ -6,8 +6,7 @@
       :key="index"
       v-on:click="goToDetail(shortTrip)"
     >
-      <!-- <img class="shortTripImg" v-bind:src="'shortTrip.fotky[0].url'" alt="picOfCountryside" /> -->
-      <img class="shortTripImg" v-bind:src="'/Images/img1.jpg'" alt="picOfCountryside" />
+      <img class="shortTripImg" v-bind:src="`/Images/${shortTrip.fotky[0].url}`" alt="picOfCountryside" />
       <h3>{{ shortTrip.nazev }}</h3>
       <div class="elipsis">
         <p class="text">{{ shortTrip.odstavce[0].text }}</p>

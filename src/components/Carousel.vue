@@ -1,10 +1,15 @@
 <template>
-  <carousel class="photos" :per-page="1" :mouse-drag="false" :navigationEnabled="true" paginationActiveColor="#463F3A" paginationColor="#BCB8B1" autoplay="true" autoplayTimeout=2000>
-      <slide><img class="shortTripImg" src="/images/img1.jpg" alt="Carousel 1"></slide>
-      <slide><img class="shortTripImg" src="/images/img3.jpg" alt="Carousel 2"></slide>
-      <slide><img class="shortTripImg" src="/images/img4.jpg" alt="Carousel 3"></slide>
-      <slide><img class="shortTripImg" src="/images/img1.jpg" alt="Carousel 4"></slide>
-    </carousel>
+  <carousel 
+    class="photos"
+    :per-page="1" 
+    :mouse-drag="false" 
+    paginationActiveColor="#463F3A" 
+    paginationColor="#BCB8B1" 
+    :autoplay="true" 
+    :autoplayTimeout=4000
+  >
+    <slide v-for="(fotka, index2) in shortTrip.fotky"  v-bind:key="index2"><img class="shortTripImg" v-bind:src="`/images/${fotka.url}`" alt="Carousel 1"></slide>
+  </carousel>
 </template>
 
 <script>
@@ -17,9 +22,6 @@ export default  {
   },
   props: ['shortTrip']
 };
-
-//:navigationNextLabel="`<img src='/images/rightArrow.png class='iconCarousel'>`" :navigationPrevLabel="`<img src='/images/rightArrow.png class='iconCarousel'>`"
-
 
 </script>
 
