@@ -121,7 +121,7 @@ export default {
 
 .tripHeader {
   text-align: center;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .tripTitle {
@@ -141,7 +141,7 @@ export default {
 }
 
 .listOfParameters {
-  margin: 15% auto 10% 5%;
+  margin: 10% auto 10% 5%;
   font-size: 20px;
 }
 
@@ -153,7 +153,7 @@ export default {
 }
 
 .tripTextSection {
-  margin-top: 20%;
+  margin-top: 10%;
   margin-bottom: 10%;
 }
 
