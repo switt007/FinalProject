@@ -1,5 +1,8 @@
 <template>
   <section class="listOfTrips">
+    <div class='mapa'>
+      <mapavyletu v-bind:trips="filtrovanySeznamVyletu" />
+    </div>
     <div>
       <div v-on:click="filtrTuristika">filtr1</div>
       <div v-on:click="filtrCyklistika">filtr1</div>
@@ -13,13 +16,18 @@
 </template>
 
 <script>
+
+import MapsOfTrips from './MapOfTrips.vue';
+
 export default {
+  components: {
+    'mapavyletu': MapsOfTrips
+  },
   data: function() {
     return {
       seznamVyletu: [],
       filtrovanySeznamVyletu: []
     };
-
   },
 
   methods: {
@@ -39,7 +47,7 @@ export default {
 
     filtrOstatni() {
         this.filtrovanySeznamVyletu =  this.seznamVyletu.filter(function(vylet) {
-          return vylet.typ === 3;
+          return (vylet.typ !== 1) && (vylet.typ !== 2);
           });
       
     }
@@ -62,6 +70,13 @@ export default {
 </script>
 
 <style scoped>
+.mapa {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
 .listOfTrips {
   background-color: peru;
   color: darkslategray;
