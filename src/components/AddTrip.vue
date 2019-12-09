@@ -12,20 +12,9 @@
     <select name="vybranyKraj" v-model="vybranyKraj">
       <option v-bind:key="kraj.id" v-for="kraj in kraje" v-bind:value="kraj.id">{{kraj.nazev}}</option>
     </select>
-    Okruh:
+  
     <div class="filterLap">
-      <form>
-        <label class="radios">
-          ANO
-          <input type="radio" name="tripType" value="yes" v-model="okruh" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="radios">
-          NE
-          <input type="radio" name="tripType" value="no" v-model="okruh" />
-          <span class="checkmark"></span>
-        </label>
-      </form>
+
     </div>Délka výletu (km):
     <input
       type="text"
@@ -35,24 +24,32 @@
     />
    
 
-Popis výletu:
+Popis výletu a zajímavosti na trase:
    <ul>
       <li v-for="(odstavec, index) in odstavce" v-bind:key="index">
         <textarea v-model="odstavec.text"></textarea>  
-        <button v-on:click="deleteRow(index)" class="delete">Smazat odstavec</button>
       </li>
     </ul>
-    
-    <button v-on:click="pridejOdstavec" class="button">Přidat odstavec</button>
-
-
-    Zajímavosti: <textarea v-model="zajimavosti" placeholder="krátký popis výletu"></textarea>
 
     Trasa: <input type="text" id="pridejVylet_nadpis" v-model="trasa" placeholder="Sem zadej odkaz z mapy.cz"/>
-    
-    
-    <input type="file" ref="Fotky" multiple v-on:change="handleFiles" value="Vyber fotky" />
 
+    <div>    
+      <label for='vyber_fotky'>Vyber fotky:</label>
+      <input type="file" name='vyber_fotky' ref="Fotky" v-on:change="handleFiles" value="Vyber fotky" />
+
+      <!-- nahledy fotek. Budou se plnit postupne dle toho, jak uzivatel bude nahravat fotky - viz vyse / vyber fotky -->
+      <div v-for="(fotka, index) in fotky" v-bind:key="index" >
+        <img v-bind:src="'http://img.dogtrekking.cz/thumb/' + fotka.url" class='thumb' />
+        <input type='text' v-model="fotka.popisek" placeholder="Popisek fotky" /> <!-- zde je nutno jeste ke kazde fotce doplnit popisek -->
+        <input type='text' v-model="fotka.alt" placeholder="Alternativní text namísto fotky" /> <!-- a zde je nutno doplnit alternativni text, tzv img alt -->
+      </div>
+    </div>
+
+
+    <div>
+      <label for='vyber_gpx'>Vyber GPX soubor, pokud máš:</label>
+      <input type="file" name='vyber_gpx' ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
+    </div>
 
 
     <hr />
@@ -102,17 +99,14 @@ export default {
 
       nazevVyletu: "",
 
-      okruh: 1,
-
       delka: "",
 
       odstavce: [{
         text: ''
       }],
 
-      zajimavosti: "",
-
       trasa: "",
+      trasa_gpx: "",
 
       fotky: [],
 
@@ -121,22 +115,13 @@ export default {
   },
 
   methods: {
-    pridejOdstavec() {
-      this.odstavce.push({
-        text: ''
-      })
-    },
-    deleteRow(index) {
-      this.odstavce.splice(index,1)
-    },
-
+    // Ihned pote, co uzivatel vybere obrazek, tak dojde k jeho odeslani na server. Na klienta pote dojde interni ID teto fotky, pres kterou je mozne k obrazku pristoupit
     handleFiles() {
-      this.fotky = this.$refs.Fotky.files
-
       const formData = new FormData();
       
-      this.fotky.forEach(ele => {
-        formData.append('file', ele) //event.target.files[0] data going here
+      // zde sice je pouzit pruchod polem obrazku, nicmene v template je prikazan vyber fotek po jedne fotce!!!
+      this.$refs.Fotky.files.forEach(ele => {
+        formData.append('file', ele)
       });
 
       var obj = {
@@ -148,7 +133,40 @@ export default {
       fetch('http://img.dogtrekking.cz/add', obj)
       .then(response => response.json())
       .then(json => {
-        console.log(json);
+
+        // pokud dojde k spravnemu odeslani, a pokud je vraceno spravne id, tak si id ulozime do fotek, ktere patri k tomuto vyletu. 
+        // data 'fotky' jsou rovnez provazany v template a dojde tedy k zobrazeni nahledu na vybrane fotky, ktere se budou uploadovat.
+        if (typeof(json.id) !== 'undefined' && json.id !== null && json.id !== '')
+          this.fotky.push(
+          {
+            alt: '',
+            url: json.id,
+            popisek: ""
+          });
+      });
+    },
+    
+    // Ihned pote, co uzivatel vybere GPX soubor, tak dojde k jeho odeslani na server, na klienta pote zpet prijde jiz jen obsah
+    // tohoto souboru a k tomu i Id (prozatim neni vyuzito)
+    handleGpxFile() {
+      const formData = new FormData();
+      
+      this.$refs.gpx.files.forEach(ele => {
+        formData.append('file', ele)
+      });
+
+      var obj = {
+        method: 'POST',
+        body: formData,
+        credentials: 'same-origin',
+      };
+
+      fetch('http://rest.dogtrekking.cz/trips/addgpx', obj)
+      .then(response => response.json())
+      .then(json => {
+        if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
+          this.trasa_gpx = json.GpxContent; // pokud se podarilo GPX trasu spravne ulozit, tak si obsah GPX ulozime do lokalni promenne. Na zaklade techto dat je pripadne mozne vyuziti
+                                            // komponenty Maps.vue - zobrazeni trasy jeste pred pridanim vyletu
       });
     },
 
@@ -159,20 +177,10 @@ export default {
         typ: this.vybranyTyp,
         kraj: this.vybranyKraj,
         okruh: this.okruh === 'yes' ? 1 : 0,
+        zajimavosti: this.zajimavosti,
         odstavce: this.odstavce,
-        fotky: [
-          {
-            alt: "Krplov",
-            url: "FotkaKrplova.jpeg",
-            popisek: "asdfasdf asdfasfd"
-          },
-          {
-            alt: "Oznice",
-            url: "FotkaOznice.jpeg",
-            popisek: "p98w4tuoskhgdsalkjhewpt "
-          }
-        ],
-        trasa: 0,
+        fotky: this.fotky,
+        trasa: this.trasa_gpx,
         trasa_link: this.trasa
       };
 
@@ -185,16 +193,27 @@ export default {
         "Content-Type": "application/json"
       };
 
-      var vm = this;
       fetch("http://rest.dogtrekking.cz/trips/add", obj)
-        .then(function(res) {
-          return res.json();
-        })
-        .then(function(response) {
+      .then(response => response.json())
+      .then(json => {
+        this.savingOK = true; // info, ze se podarilo ulozit novy vylet
 
-          vm.savingOK=true;
+        // vymazani formulare
+        this.vybranyKraj = 1;
+        this.vybranyTyp
+        this.autor = '';
+        this.nazevVyletu = '';
+        this.okruh = 1;
+        this.delka = 0;
+        this.odstavce = [{text: ''}];
+        this.zajimavosti = "";
+        this.trasa = "";
+        this.trasa_gpx = "";
+        this.fotky = [];
 
-        });
+        // a i vymazani priznaku, ze se ulozilo spravne ...
+        this.savingOK = false;
+      });
     }
   }
 };
@@ -346,5 +365,9 @@ export default {
   height: 6px;
   border-radius: 50%;
   background: white;
+}
+
+img.thumb {
+  width: 100px;
 }
 </style>
