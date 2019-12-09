@@ -25,13 +25,12 @@
    
 
 Popis výletu a zajímavosti na trase:
-   <ul>
-      <li v-for="(odstavec, index) in odstavce" v-bind:key="index">
-        <textarea v-model="odstavec.text"></textarea>  
-      </li>
-    </ul>
+ 
 
-    Trasa: <input type="text" id="pridejVylet_nadpis" v-model="trasa" placeholder="Sem zadej odkaz z mapy.cz"/>
+        <textarea v-model="odstavce[0].text"></textarea>  
+
+
+    Trasa: <input type="text" id="pridejVylet_nadpis" v-model="trasa" placeholder="Sem zadej odkaz z mapy.cz"/><br />
 
     <div>    
       <label for='vyber_fotky'>Vyber fotky:</label>
@@ -45,7 +44,7 @@ Popis výletu a zajímavosti na trase:
       </div>
     </div>
 
-
+<br />
     <div>
       <label for='vyber_gpx'>Vyber GPX soubor, pokud máš:</label>
       <input type="file" name='vyber_gpx' ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
@@ -247,6 +246,36 @@ export default {
   font-size: 20px;
   display: flex;
   justify-content: center;
+
+}
+
+input {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+select {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+li {
+
+  border-radius: 5px;
+  padding: 10px;
+  list-style-type: none;
+
+}
+
+textarea {
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 10px;
+  list-style-type: none;
 
 }
 
