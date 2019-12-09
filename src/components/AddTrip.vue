@@ -1,6 +1,6 @@
 <template>
 
-  <div class="addTrip">
+  <div class="addTrip" id="addTripID">
 
     Autor výletu: <input type="text" id="pridejVylet_autor" v-model="autor" placeholder="Zadej autora výletu"/>
     Název výletu: <input type="text" id="pridejVylet_nazev" v-model="nazevVyletu" placeholder="Napiš název výletu"/>

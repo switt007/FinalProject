@@ -55,7 +55,6 @@ export default {
   outline: none;
   height: 47px;
   line-height: 47px;
-  z-index: 1000;
   margin-bottom: 20%;
   font-family: 'Merriweather', serif;
   font-size: 20px;
@@ -98,6 +97,8 @@ export default {
   background-color: #8A817C;
   left: 0;
   right: 0;
+  z-index: 1000;
+
 }
 
 .item {

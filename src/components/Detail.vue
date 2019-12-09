@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    
+
     <!-- HLAVICKA S NAZVEM A AUTOREM -->
     <section class="tripHeader">
       <h1 class="tripTitle">{{ shortTrip.nazev }}</h1>
@@ -84,7 +84,7 @@ export default {
           shortTrip2 => shortTrip2.id == this.tripID
         )[0];
         this.region = this.regions[this.shortTrip.kraj];
-        this.type = this.types[this.shortTrip.typ];
+        this.type = this.types[this.shortTrip.typ - 1];
         this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);
   },
   watch: {
@@ -94,7 +94,7 @@ export default {
         shortTrip2 => shortTrip2.id == this.tripID
       )[0];
       this.region = this.regions[this.shortTrip.kraj];
-      this.type = this.types[this.shortTrip.typ];
+      this.type = this.types[this.shortTrip.typ - 1];
     }
   }
 }

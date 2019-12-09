@@ -3,12 +3,12 @@
     <ul class="ulMenu">
       <li
         class="liMenu"
-        v-on:click="changePage('/searchTrip')"
+        v-on:click="changePage('/searchTrip#searchTripID')"
         v-bind:class="{aktivni:this.$route.path=='/searchTrip'}"
       >Vyhledej výlet</li>
       <li
         class="liMenu"
-        v-on:click="changePage('/addTrip')"
+        v-on:click="changePage('/addTrip#addTripID')"
         v-bind:class="{aktivni:this.$route.path=='/addTrip'}"
       >Přidej výlet</li>
       <li

@@ -1,34 +1,33 @@
 <template>
-  <carousel 
+  <carousel
     class="photos"
-    :per-page="1" 
-    :mouse-drag="false" 
-    paginationActiveColor="#463F3A" 
-    paginationColor="#BCB8B1" 
-    :autoplay="true" 
-    :autoplayTimeout=2500
+    :per-page="1"
+    :mouse-drag="false"
+    paginationActiveColor="#463F3A"
+    paginationColor="#BCB8B1"
+    :autoplay="true"
+    :autoplayTimeout="2500"
+    easing="linear"
   >
-    <slide v-for="(fotka, index2) in shortTrip.fotky"  v-bind:key="index2"><img class="shortTripImg" v-bind:src="`/images/${fotka.url}`" alt="Carousel 1"></slide>
+    <slide v-for="(fotka, index2) in shortTrip.fotky" v-bind:key="index2">
+      <img class="shortTripImg" v-bind:src="`/images/${fotka.url}`" alt="Carousel 1" />
+    </slide>
   </carousel>
 </template>
 
 <script>
-
-import { Carousel, Slide } from 'vue-carousel';
-export default  { 
+import { Carousel, Slide } from "vue-carousel";
+export default {
   components: {
-    'carousel': Carousel,
-    'slide': Slide
+    carousel: Carousel,
+    slide: Slide
   },
-  props: ['shortTrip']
+  props: ["shortTrip"]
 };
-
 </script>
 
 <style>
 .iconCarousel {
- color: white;
+  color: white;
 }
-
-
 </style>

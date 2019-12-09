@@ -1,9 +1,9 @@
 [ 
     { 
         "id": 1, 
-        "autor": "SasaS",
+        "autor": "Petr Simek",
         "nazev": "Putování po Moravském krasu", 
-        "typ": 1, 
+        "typ": 2, 
         "kraj": 11, 
         "okruh": 0,
         "delka": 19,
@@ -24,9 +24,9 @@
     },
         { 
         "id": 2, 
-        "autor": "SasaS",
+        "autor": "Sasa Simkova",
         "nazev": "Cesta nejen po moravských vinicích", 
-        "typ": 1, 
+        "typ": 2, 
         "kraj": 11, 
         "okruh": 1,
         "delka": 42,
@@ -48,9 +48,9 @@
     },
     { 
         "id": 3, 
-        "autor": "SasaS",
+        "autor": "Sasa Simkova",
         "nazev": "Za Napoleonem do Slavkova", 
-        "typ": 1, 
+        "typ": 2, 
         "kraj": 11, 
         "okruh": 1,
         "delka": 74,
@@ -71,14 +71,14 @@
     },
     {
     "id": 4, 
-        "autor": "SasaS",
-        "nazev": "Z Pardubic do Zelezných hor", 
-        "typ": 1, 
+        "autor": "Sasa Simkova",
+        "nazev": "Z Pardubic do Železných hor", 
+        "typ": 2, 
         "kraj": 9, 
         "okruh": 1,
         "delka": 76,
         "odstavce": [
-            { "text": "Jako dítě jsem do kopců pod Železnými horami zabrousil na kole celkem pravidelně. Z Pardubic to není zase tak daleko, krajina se zvedá už nějakých patnáct kilometrů od města. Něco jiného je ale toulat se v podhůří celkem nízkých Železných hor, a vyjet si přímo do jejich centra – k přehradní nádrži Seč, která je častým cílem mnoha Pardubáků a dalších Východočechů.\nNejjednodušší a nejrychlejší cesta vede po hlavní silnici z Pardubic do Chrudimi, Slatiňan a přes Nasavrky směrem na Horní Bradlo. Pro cyklisty je ale málo atraktivní, a hlavně nebezpečná: je totiž hodně frekventovaná a často tu potkáte nákladní auta a kamiony. Protentokrát jsem tedy zvolil vedlejší silnice a z Pardubic se vydal přes Nemošice a Ostřešany do Chrudimi. Okresní silničky vedou poli, a na auto tu narazíte málokdy.\nCyklovýlet do Železných hor vám zabere čtyři až pět hodin času. Není to žádná jednoduchá trasa, rozhodně se nehodí pro rodiny s dětmi. Pro trénink fyzičky se ale hodí náramně." }
+            { "text": "Pardubicko je rovinaté jako placka, takže tu potkáte opravdu hodně cyklistů. Vyjet směrem na Železné hory ale znamená zabojovat s kopci a neustálou ztrátou výšky, kterou musí cyklista jinde „dohnat“. Cyklistické kolečko na přehradní nádrž Seč a okolo vysílače Krásné zpátky do Pardubic dá zabrat.\n Jako dítě jsem do kopců pod Železnými horami zabrousil na kole celkem pravidelně. Z Pardubic to není zase tak daleko, krajina se zvedá už nějakých patnáct kilometrů od města. Něco jiného je ale toulat se v podhůří celkem nízkých Železných hor, a vyjet si přímo do jejich centra – k přehradní nádrži Seč, která je častým cílem mnoha Pardubáků a dalších Východočechů.\nNejjednodušší a nejrychlejší cesta vede po hlavní silnici z Pardubic do Chrudimi, Slatiňan a přes Nasavrky směrem na Horní Bradlo. Pro cyklisty je ale málo atraktivní, a hlavně nebezpečná: je totiž hodně frekventovaná a často tu potkáte nákladní auta a kamiony. Protentokrát jsem tedy zvolil vedlejší silnice a z Pardubic se vydal přes Nemošice a Ostřešany do Chrudimi. Okresní silničky vedou poli, a na auto tu narazíte málokdy.\nCyklovýlet do Železných hor vám zabere čtyři až pět hodin času. Není to žádná jednoduchá trasa, rozhodně se nehodí pro rodiny s dětmi. Pro trénink fyzičky se ale hodí náramně." }
         ], 
         "zajimavosti": [
             { "text": "Pardubicko je rovinaté jako placka, takže tu potkáte opravdu hodně cyklistů. Vyjet směrem na Železné hory ale znamená zabojovat s kopci a neustálou ztrátou výšky, kterou musí cyklista jinde „dohnat“. Cyklistické kolečko na přehradní nádrž Seč a okolo vysílače Krásné zpátky do Pardubic dá zabrat." }

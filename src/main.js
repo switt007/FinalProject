@@ -16,6 +16,14 @@ Vue.use(VueRouter);
 Vue.use(VueCarousel);
 
 const router = new VueRouter({
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  },
   routes: [
     {
       path: '/searchTrip',

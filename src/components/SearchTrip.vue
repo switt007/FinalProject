@@ -1,12 +1,14 @@
 <template>
   <div>
-    <section class="searchTrip">
+    <section class="searchTrip" id="searchTripID">
       <div class="filterRegion">
         <h3 class="searchTripH3">VYBER KRAJ</h3>
         <customSelect
           :options="['Celá Česká republika', 'Hlavní město Praha', 'Středočeský kraj', 'Jihočeský kraj', 'Plzeňský kraj', 'Karlovarský kraj', 'Ústecký kraj', 'Liberecký kraj', 'Královéhradecký kraj', 'Pardubický kraj', 'Kraj Vysočina', 'Jihomoravský kraj', 'Olomoucký kraj', 'Zlínský kraj', 'Moravskoslezský kraj', 'Zahraničí']"
-          v-on:input="filterTrips($event)"
+          v-on:input="filterRegion($event)"
         />
+        <h3 class="searchTripH3">VYBER AUTORA</h3>
+        <customSelect :options="arrayOfAuthors" v-on:input="filterAuthor($event)" />
       </div>
 
       <div class="filterType">
@@ -38,9 +40,18 @@
     </section>
 
     <section class="shortTripSection">
-      <div class="shortTripDiv" v-for="(shortTrip, index) in filteredTrips" :key="index" v-on:click="goToDetail(shortTrip)">
+      <div
+        class="shortTripDiv"
+        v-for="(shortTrip, index) in filteredTrips"
+        :key="index"
+        v-on:click="goToDetail(shortTrip)"
+      >
         <!--<img class="shortTripImg" v-bind:src="'../public/images/'+shortTrip.fotky[0].url" alt="picOfCountryside">-->
-        <img class="shortTripImg" v-bind:src="`/images/${shortTrip.fotky[0].url}`" alt="picOfCountryside" />
+        <img
+          class="shortTripImg"
+          v-bind:src="`/images/${shortTrip.fotky[0].url}`"
+          alt="picOfCountryside"
+        />
         <h3>{{ shortTrip.nazev }}</h3>
         <div class="elipsis">
           <p class="text">{{ shortTrip.odstavce[0].text }}</p>
@@ -64,18 +75,15 @@ export default {
       trips: null,
       tripTyp: 1,
       tripKraj: 0,
-      singleTrip: {}
+      tripAutor: 0,
+      singleTrip: {},
+      arrayOfAuthors: []
     };
   },
 
   watch: {
     tripTyp: function() {
-      this.filteredTrips =
-        this.tripKraj === 0
-          ? this.trips.filter(trip => trip.typ == this.tripTyp)
-          : this.trips
-              .filter(trip => trip.kraj == this.tripKraj)
-              .filter(trip => trip.typ == this.tripTyp);
+      this.filterTrips();
     }
   },
 
@@ -85,19 +93,49 @@ export default {
 
   created: function() {
     this.trips = require("../routes.json");
+    this.generateArrayOfAuthors();
   },
 
   methods: {
-    filterTrips(event) {
+    filterRegion(event) {
+      console.log("method filterTrips executed...");
       this.tripKraj = event.index;
-      this.filteredTrips =
-        this.tripKraj === 0
-          ? this.trips.filter(trip => trip.typ == this.tripTyp)
-          : this.trips
-              .filter(trip => trip.kraj == event.index)
-              .filter(trip => trip.typ == this.tripTyp);
+      this.filterTrips();
     },
-     goToDetail(shortTrip) {
+    generateArrayOfAuthors() {
+      this.arrayOfAuthors.push("Všichni");
+      this.trips.forEach(trip => {
+        if (!this.arrayOfAuthors.includes(trip.autor)) {
+          this.arrayOfAuthors.push(trip.autor);
+        }
+      });
+      return this.arrayOfAuthors;
+    },
+
+    filterAuthor(event) {
+      this.tripAutor = this.arrayOfAuthors[event.index];
+      this.filterTrips();
+    },
+
+    filterTrips() {
+      this.filteredTrips =
+        this.tripAutor === "Všichni"
+          ? this.tripKraj === 0
+            ? this.trips.filter(trip => trip.typ == this.tripTyp)
+            : this.trips
+                .filter(trip => trip.typ == this.tripTyp)
+                .filter(trip => trip.kraj == this.tripKraj)
+          : this.tripKraj === 0
+          ? this.trips
+              .filter(trip => trip.typ == this.tripTyp)
+              .filter(trip => trip.autor == this.tripAutor)
+          : this.trips
+              .filter(trip => trip.autor == this.tripAutor)
+              .filter(trip => trip.kraj == this.tripKraj)
+              .filter(trip => trip.typ == this.tripTyp); 
+    },
+
+    goToDetail(shortTrip) {
       this.$router.push({ path: "/detail/" + shortTrip.id });
     }
   }
