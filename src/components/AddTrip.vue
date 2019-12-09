@@ -228,11 +228,12 @@ export default {
   background-color: white;
   margin-left: 20%;
   margin-right: 20%;
-  margin-top: 3%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   color: #463f3a;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
   padding: 20px;
-  border-radius: 1%;
+
 }
 
 .button_addTrip {
