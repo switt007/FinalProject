@@ -13,6 +13,7 @@ export default {
   mounted () {
         var center = SMap.Coords.fromWGS84(17.400307, 49.571853); 
         var m = new SMap(JAK.gel("mapa"), center, 6); 
+        m.addControl(new SMap.Control.Sync());
         m.addDefaultLayer(SMap.DEF_TURIST).enable(); 
         m.addDefaultControls(); 
 
@@ -46,20 +47,24 @@ export default {
             break;
         }
 
-        let centerOfThisTrip = SMap.Coords.fromWGS84(startLon, startLat);  
-        
-        let card = new SMap.Card();                                       
-        card.getHeader().innerHTML = "<strong>" + ele.nazev + "</strong>";
-        card.getBody().innerHTML = ele.zajimavosti;
-        
-        let options = {
-          title: ele.nazev            
-        };
+        if (parseFloat(startLat) !== 0 && parseFloat(startLon) !== 0) {
+          let centerOfThisTrip = SMap.Coords.fromWGS84(parseFloat(startLon), parseFloat(startLat));  
+          console.log(ele.nazev);
+          console.log(centerOfThisTrip);
 
-        let marker = new SMap.Marker(centerOfThisTrip, "myMarker", options);  
-        marker.decorate(SMap.Marker.Feature.Card, card);
+          ele.card = new SMap.Card();                                       
+          ele.card.getHeader().innerHTML = "<strong>" + ele.nazev + "</strong>";
+          ele.card.getBody().innerHTML = ele.zajimavosti;
+          
+          let options = {
+            title: ele.nazev            
+          };
 
-        this.markerLayer.addMarker(marker);
+          ele.marker = new SMap.Marker(centerOfThisTrip, ele.nazev + ele.id, options);  
+          ele.marker.decorate(SMap.Marker.Feature.Card, ele.card);
+
+          this.markerLayer.addMarker(ele.marker);
+        }
       });
     }
   },
