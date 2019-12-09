@@ -34,13 +34,17 @@ Popis výletu a zajímavosti na trase:
 
     <div>    
       <label for='vyber_fotky'>Vyber fotky:</label>
-      <input type="file" name='vyber_fotky' ref="Fotky" v-on:change="handleFiles" value="Vyber fotky" />
+      <input type="file" name='vyber_fotky' multiple ref="Fotky" v-on:change="handleFiles" value="Vyber fotky" />
+      <div v-if="photouploading">Nahrávám fotku/y na server, moment ...</div>
 
-      <!-- nahledy fotek. Budou se plnit postupne dle toho, jak uzivatel bude nahravat fotky - viz vyse / vyber fotky -->
-      <div v-for="(fotka, index) in fotky" v-bind:key="index" >
-        <img v-bind:src="'http://img.dogtrekking.cz/thumb/' + fotka.url" class='thumb' />
-        <input type='text' v-model="fotka.popisek" placeholder="Popisek fotky" /> <!-- zde je nutno jeste ke kazde fotce doplnit popisek -->
-        <input type='text' v-model="fotka.alt" placeholder="Alternativní text namísto fotky" /> <!-- a zde je nutno doplnit alternativni text, tzv img alt -->
+      <div v-for="(fotka, index) in fotky" v-bind:key="index" class='fotka'>
+        <div class='fotkaimg'>
+          <img v-bind:src="'http://img.dogtrekking.cz/thumb/' + fotka.url" class='thumb' />
+        </div>
+        <div class='fotkainfo'>
+          <input type='text' v-model="fotka.popisek" placeholder="Popisek fotky" />
+          <input type='text' v-model="fotka.alt" placeholder="Alternativní text namísto fotky" /> 
+        </div>
       </div>
     </div>
 
@@ -68,6 +72,7 @@ Popis výletu a zajímavosti na trase:
 export default {
   data: function() {
     return {
+      photouploading: false,
       vybranyKraj: 1,
       kraje: [
         { id: 1, nazev: "Hlavní město Praha" },
@@ -114,39 +119,46 @@ export default {
   },
 
   methods: {
-    // Ihned pote, co uzivatel vybere obrazek, tak dojde k jeho odeslani na server. Na klienta pote dojde interni ID teto fotky, pres kterou je mozne k obrazku pristoupit
     handleFiles() {
-      const formData = new FormData();
-      
-      // zde sice je pouzit pruchod polem obrazku, nicmene v template je prikazan vyber fotek po jedne fotce!!!
-      this.$refs.Fotky.files.forEach(ele => {
+      this.photouploading = true; 
+
+      let promises = []; 
+
+      this.$refs.Fotky.files.forEach(ele => { 
+        const formData = new FormData();
+        
         formData.append('file', ele)
+        
+        var obj = {
+          method: 'POST',
+          body: formData,
+          credentials: 'same-origin',
+        };
+
+        promises.push(fetch('http://img.dogtrekking.cz/add', obj)); 
       });
 
-      var obj = {
-        method: 'POST',
-        body: formData,
-        credentials: 'same-origin',
-      };
+      Promise.all(promises)
+      .then(response => {
+        Promise.all(response.map(r => r.json())) 
+        .then(jsonArray => { 
+          jsonArray.forEach(json => {
 
-      fetch('http://img.dogtrekking.cz/add', obj)
-      .then(response => response.json())
-      .then(json => {
-
-        // pokud dojde k spravnemu odeslani, a pokud je vraceno spravne id, tak si id ulozime do fotek, ktere patri k tomuto vyletu. 
-        // data 'fotky' jsou rovnez provazany v template a dojde tedy k zobrazeni nahledu na vybrane fotky, ktere se budou uploadovat.
-        if (typeof(json.id) !== 'undefined' && json.id !== null && json.id !== '')
-          this.fotky.push(
-          {
-            alt: '',
-            url: json.id,
-            popisek: ""
+            if (typeof(json.id) !== 'undefined' && json.id !== null && json.id !== '') {
+              this.fotky.push({
+                alt: '',
+                url: json.id,
+                popisek: ""
+              });
+            }
           });
+        
+          this.photouploading = false;
+        });
       });
     },
     
-    // Ihned pote, co uzivatel vybere GPX soubor, tak dojde k jeho odeslani na server, na klienta pote zpet prijde jiz jen obsah
-    // tohoto souboru a k tomu i Id (prozatim neni vyuzito)
+ 
     handleGpxFile() {
       const formData = new FormData();
       
@@ -164,8 +176,8 @@ export default {
       .then(response => response.json())
       .then(json => {
         if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
-          this.trasa_gpx = json.GpxContent; // pokud se podarilo GPX trasu spravne ulozit, tak si obsah GPX ulozime do lokalni promenne. Na zaklade techto dat je pripadne mozne vyuziti
-                                            // komponenty Maps.vue - zobrazeni trasy jeste pred pridanim vyletu
+          this.trasa_gpx = json.GpxContent; 
+                                            
       });
     },
 
@@ -175,7 +187,7 @@ export default {
         nazev: this.nazevVyletu,
         typ: this.vybranyTyp,
         kraj: this.vybranyKraj,
-        okruh: this.okruh === 'yes' ? 1 : 0,
+
         zajimavosti: this.zajimavosti,
         odstavce: this.odstavce,
         fotky: this.fotky,
@@ -195,7 +207,7 @@ export default {
       fetch("http://rest.dogtrekking.cz/trips/add", obj)
       .then(response => response.json())
       .then(json => {
-        this.savingOK = true; // info, ze se podarilo ulozit novy vylet
+        this.savingOK = true; 
 
         // vymazani formulare
         this.vybranyKraj = 1;
@@ -210,7 +222,18 @@ export default {
         this.trasa_gpx = "";
         this.fotky = [];
 
-        // a i vymazani priznaku, ze se ulozilo spravne ...
+
+
+        const inputFotky = this.$refs.Fotky;
+        inputFotky.type = 'text';
+        inputFotky.type = 'file';
+
+        const inputGpx = this.$refs.gpx;
+        inputGpx.type = 'text';
+        inputGpx.type = 'file';
+
+
+     
         this.savingOK = false;
       });
     }
@@ -220,6 +243,23 @@ export default {
 
 
 <style scoped>
+
+.fotka {
+  display: flex;
+  flex-flow: row;
+}
+
+.fotkaimg {
+  display: flex;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.fotkainfo {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
 
 .addTrip {
   display: flex;
