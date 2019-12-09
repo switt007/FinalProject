@@ -1,9 +1,9 @@
 <template>
   <section class="listOfTrips">
-    <div class='mapa'>
+    <div class="mapa">
       <mapavyletu v-bind:trips="filtrovanySeznamVyletu" />
     </div>
-    <div>
+    <!-- <div>
       <div v-on:click="filtrTuristika">filtr1</div>
       <div v-on:click="filtrCyklistika">filtr1</div>
       <div v-on:click="filtrOstatni">filtr1</div>
@@ -11,7 +11,7 @@
 
     <div>
       <div v-for="vylet in filtrovanySeznamVyletu" v-bind:key="vylet.id">{{vylet.nazev}}</div>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -24,44 +24,44 @@ export default {
     'mapavyletu': MapsOfTrips
   },
   data: function() {
-    return {
-      seznamVyletu: [],
-      filtrovanySeznamVyletu: []
-    };
-  },
+   return {
+    seznamVyletu: [],
+  filtrovanySeznamVyletu: []
+ };
+},
 
-  methods: {
-    filtrTuristika() {
-        this.filtrovanySeznamVyletu =  this.seznamVyletu.filter(function(vylet) {
-          return vylet.typ === 1;
-            });
+  // methods: {
+  //   filtrTuristika() {
+  //       this.filtrovanySeznamVyletu =  this.seznamVyletu.filter(function(vylet) {
+  //         return vylet.typ === 1;
+  //           });
       
-    },
+  //   },
     
-    filtrCyklistika() {
-        this.filtrovanySeznamVyletu =  this.seznamVyletu.filter(function(vylet) {
-          return vylet.typ === 2;
-            });
+  //   filtrCyklistika() {
+  //       this.filtrovanySeznamVyletu =  this.seznamVyletu.filter(function(vylet) {
+  //         return vylet.typ === 2;
+  //           });
       
-    },
+  //   },
 
-    filtrOstatni() {
-        this.filtrovanySeznamVyletu =  this.seznamVyletu.filter(function(vylet) {
-          return (vylet.typ !== 1) && (vylet.typ !== 2);
-          });
+  //   filtrOstatni() {
+  //       this.filtrovanySeznamVyletu =  this.seznamVyletu.filter(function(vylet) {
+  //         return (vylet.typ !== 1) && (vylet.typ !== 2);
+  //         });
       
-    }
+  //   }
 
-  },
+  // },
 
-  mounted() {
-    fetch("http://rest.dogtrekking.cz/trips/1")
-      .then(response => response.json())
-      .then(data => {
-        this.seznamVyletu = data;
-        this.filtrovanySeznamVyletu = data;
-      });
-  }
+mounted() {
+fetch("http://rest.dogtrekking.cz/trips/1")
+.then(response => response.json())
+.then(data => {
+this.seznamVyletu = data;
+this.filtrovanySeznamVyletu = data;
+});
+}
 }
 
 
@@ -75,6 +75,9 @@ export default {
   width: 100%;
   align-items: center;
   justify-content: center;
+  background-color: #f4f3ee;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .listOfTrips {
