@@ -6,7 +6,7 @@
     paginationActiveColor="#463F3A" 
     paginationColor="#BCB8B1" 
     :autoplay="true" 
-    :autoplayTimeout=4000
+    :autoplayTimeout=2500
   >
     <slide v-for="(fotka, index2) in shortTrip.fotky"  v-bind:key="index2"><img class="shortTripImg" v-bind:src="`/images/${fotka.url}`" alt="Carousel 1"></slide>
   </carousel>

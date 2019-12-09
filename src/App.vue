@@ -2,7 +2,7 @@
   <div>
     <!-- HEADER -->
     <header>
-      <h1 class="title">Outdoor nadšenci</h1>
+      <h1 class="title">Kudy tudy do přírody?</h1>
       <p class="saying">"Alespoň jednou za rok navštiv místo, kde jsi nikdy předtím nebyl"</p>
       <p class="saying2">Dalajláma</p>
     </header>
@@ -60,7 +60,7 @@ export default {
     'shortTrip': ShortTrip
   },
 
-   created: function() {
+  created: function() {
     this.trips = require('./routes.json');
     console.log('trips loaded...');
   }
@@ -109,7 +109,7 @@ body {
 
 header {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(assets/images/uvodniObrazek2.jpg) center center;
+    url(assets/images/uvodniObrazek3.jpg) center center;
   background-size: cover;
   color: white;
   font-weight: bold;
