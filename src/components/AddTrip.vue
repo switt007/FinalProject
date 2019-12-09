@@ -37,14 +37,13 @@ Popis výletu a zajímavosti na trase:
       <input type="file" name='vyber_fotky' multiple ref="Fotky" v-on:change="handleFiles" value="Vyber fotky" />
       <div v-if="photouploading">Nahrávám fotku/y na server, moment ...</div>
 
-      <!-- nahledy fotek. Budou se plnit postupne dle toho, jak uzivatel bude nahravat fotky - viz vyse / vyber fotky -->
       <div v-for="(fotka, index) in fotky" v-bind:key="index" class='fotka'>
         <div class='fotkaimg'>
           <img v-bind:src="'http://img.dogtrekking.cz/thumb/' + fotka.url" class='thumb' />
         </div>
         <div class='fotkainfo'>
-          <input type='text' v-model="fotka.popisek" placeholder="Popisek fotky" /> <!-- zde je nutno jeste ke kazde fotce doplnit popisek -->
-          <input type='text' v-model="fotka.alt" placeholder="Alternativní text namísto fotky" /> <!-- a zde je nutno doplnit alternativni text, tzv img alt -->
+          <input type='text' v-model="fotka.popisek" placeholder="Popisek fotky" />
+          <input type='text' v-model="fotka.alt" placeholder="Alternativní text namísto fotky" /> 
         </div>
       </div>
     </div>
@@ -120,14 +119,12 @@ export default {
   },
 
   methods: {
-    // Ihned pote, co uzivatel vybere obrazky, tak dojde k odeslani na server. Na klienta pote dojde interni ID teto fotky, pres kterou je mozne k obrazku pristoupit
     handleFiles() {
-      this.photouploading = true; // nastavime priznak, ze odesilame data na server. V template osetrime - zobrazime 'nahravame na server'
+      this.photouploading = true; 
 
-      // pro odeslani obrazku vyuzijeme HTML5 - promise, pro kazdy obrazek vytvorime vlastni promise
-      let promises = []; // pole prislibu ...
+      let promises = []; 
 
-      this.$refs.Fotky.files.forEach(ele => { // pro kazdy vybrany obrazek ...
+      this.$refs.Fotky.files.forEach(ele => { 
         const formData = new FormData();
         
         formData.append('file', ele)
@@ -138,19 +135,16 @@ export default {
           credentials: 'same-origin',
         };
 
-        promises.push(fetch('http://img.dogtrekking.cz/add', obj)); // vytvorime prislib a pridame do pole prislibu...
+        promises.push(fetch('http://img.dogtrekking.cz/add', obj)); 
       });
 
-      // pote, co vsechny prisliby se provedou ...
       Promise.all(promises)
       .then(response => {
-        Promise.all(response.map(r => r.json())) // tak je vsechny prevedeme do json ...
-        .then(jsonArray => { // a se vzniklym polem json dale pracujeme
+        Promise.all(response.map(r => r.json())) 
+        .then(jsonArray => { 
           jsonArray.forEach(json => {
 
-            // pokud je obrazek nahrany, tak ma vyplneny 'id'
             if (typeof(json.id) !== 'undefined' && json.id !== null && json.id !== '') {
-              // pokud ano, pridame nahled do 'nahledove galerie'
               this.fotky.push({
                 alt: '',
                 url: json.id,
@@ -159,14 +153,12 @@ export default {
             }
           });
         
-          // vsechny fotky jsou nahrany na server, tak muzeme zase odnastavit priznak uploadingu na server
           this.photouploading = false;
         });
       });
     },
     
-    // Ihned pote, co uzivatel vybere GPX soubor, tak dojde k jeho odeslani na server, na klienta pote zpet prijde jiz jen obsah
-    // tohoto souboru a k tomu i Id (prozatim neni vyuzito)
+ 
     handleGpxFile() {
       const formData = new FormData();
       
@@ -184,8 +176,8 @@ export default {
       .then(response => response.json())
       .then(json => {
         if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
-          this.trasa_gpx = json.GpxContent; // pokud se podarilo GPX trasu spravne ulozit, tak si obsah GPX ulozime do lokalni promenne. Na zaklade techto dat je pripadne mozne vyuziti
-                                            // komponenty Maps.vue - zobrazeni trasy jeste pred pridanim vyletu
+          this.trasa_gpx = json.GpxContent; 
+                                            
       });
     },
 
@@ -195,7 +187,7 @@ export default {
         nazev: this.nazevVyletu,
         typ: this.vybranyTyp,
         kraj: this.vybranyKraj,
-        okruh: this.okruh === 'yes' ? 1 : 0,
+
         zajimavosti: this.zajimavosti,
         odstavce: this.odstavce,
         fotky: this.fotky,
@@ -215,7 +207,7 @@ export default {
       fetch("http://rest.dogtrekking.cz/trips/add", obj)
       .then(response => response.json())
       .then(json => {
-        this.savingOK = true; // info, ze se podarilo ulozit novy vylet
+        this.savingOK = true; 
 
         // vymazani formulare
         this.vybranyKraj = 1;
@@ -231,7 +223,7 @@ export default {
         this.fotky = [];
 
 
-        // vymazani input typu file je trochu slozitejsi ...
+
         const inputFotky = this.$refs.Fotky;
         inputFotky.type = 'text';
         inputFotky.type = 'file';
@@ -241,7 +233,7 @@ export default {
         inputGpx.type = 'file';
 
 
-        // a i vymazani priznaku, ze se ulozilo spravne ...
+     
         this.savingOK = false;
       });
     }
