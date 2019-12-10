@@ -46,10 +46,9 @@
         :key="index"
         v-on:click="goToDetail(shortTrip)"
       >
-        <!--<img class="shortTripImg" v-bind:src="'../public/images/'+shortTrip.fotky[0].url" alt="picOfCountryside">-->
         <img
           class="shortTripImg"
-          v-bind:src="`/images/${shortTrip.fotky[0].url}`"
+          v-bind:src="`http://img.dogtrekking.cz/${typeof shortTrip.fotky[0] === 'undefined' ? '' : shortTrip.fotky[0].url}`"
           alt="picOfCountryside"
         />
         <h3>{{ shortTrip.nazev }}</h3>
@@ -72,12 +71,12 @@ export default {
   data: function() {
     return {
       filteredTrips: [],
-      trips: null,
+      trips: [],
       tripTyp: 1,
       tripKraj: 0,
       tripAutor: 0,
       singleTrip: {},
-      arrayOfAuthors: []
+      arrayOfAuthors: ['Všichni']
     };
   },
 
@@ -91,10 +90,19 @@ export default {
     customSelect: CustomSelect
   },
 
-  created: function() {
+  created: function getAllTrips_IncludesUnauthorized() {
+    fetch("http://rest.dogtrekking.cz/trips/1")
+      .then(response => response.json())
+      .then(response => {
+        this.trips = response;
+        this.generateArrayOfAuthors();
+   });
+  },
+
+  /*created: function() {
     this.trips = require("../routes.json");
     this.generateArrayOfAuthors();
-  },
+  },*/
 
   methods: {
     filterRegion(event) {
@@ -103,8 +111,9 @@ export default {
       this.filterTrips();
     },
     generateArrayOfAuthors() {
-      this.arrayOfAuthors.push("Všichni");
+      //this.arrayOfAuthors.push("Všichni");
       this.trips.forEach(trip => {
+        trip.autor = trip.autor.trim();
         if (!this.arrayOfAuthors.includes(trip.autor)) {
           this.arrayOfAuthors.push(trip.autor);
         }

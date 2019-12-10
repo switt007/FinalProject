@@ -9,8 +9,8 @@
     :autoplayTimeout="2500"
     easing="linear"
   >
-    <slide v-for="(fotka, index2) in shortTrip.fotky" v-bind:key="index2">
-      <img class="shortTripImg" v-bind:src="`/images/${fotka.url}`" alt="Carousel 1" />
+    <slide v-for="(fotka, index2) in typeof shortTrip === 'undefined' ? [] : shortTrip.fotky" v-bind:key="index2">
+      <img class="shortTripImg" v-bind:src="`http://img.dogtrekking.cz/${fotka.url}`" alt="Carousel 1" />
     </slide>
   </carousel>
 </template>

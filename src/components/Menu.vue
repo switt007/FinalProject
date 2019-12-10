@@ -15,7 +15,7 @@
         class="liMenu"
         v-on:click="changePage('/listOfTrips')"
         v-bind:class="{aktivni:this.$route.path=='/listOfTrips'}"
-      >Seznam výletů</li>
+      >Mapa výletů</li>
     </ul>
   </section>
 </template>

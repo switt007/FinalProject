@@ -24,10 +24,6 @@
       </p>
       <p>&copy; Jana Raczová & Alexandra Šimková</p>
     </footer>
-
-    <!--<HeaderCarousel></HeaderCarousel>
-    <mojeMenu />
-    <mujVylet />-->
   </div>
 </template>
 
@@ -60,19 +56,19 @@ export default {
     'shortTrip': ShortTrip
   },
 
-  created: function() {
+  /*created: function() {
     this.trips = require('./routes.json');
     console.log('trips loaded...');
-  }
+  }*/
 
-  /*created: function getAllTrips_IncludesUnauthorized() {
+  created: function getAllTrips_IncludesUnauthorized() {
     fetch("http://rest.dogtrekking.cz/trips/1")
       .then(response => response.json())
       .then(response => {
         this.trips = response;
         console.log(this.trips);
       });
-  }*/
+  }
 };
 </script>
 

@@ -1,13 +1,11 @@
 <template>
   <div class="detail">
-
     <!-- HLAVICKA S NAZVEM A AUTOREM -->
     <section class="tripHeader">
       <h1 class="tripTitle">{{ shortTrip.nazev }}</h1>
       <hr class="divider" />
       <p class="author">{{ shortTrip.autor }}</p>
     </section>
-
 
     <div class="flexContainer">
       <!-- SEZNAM PARAMETRU VYLETU -->
@@ -23,9 +21,8 @@
       </section>
 
       <!-- MAPA -->
-      <maps class="maps" v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]"/>
+      <maps class="maps" v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]" />
     </div>
-
 
     <!-- TEXT -->
     <section class="tripTextSection">
@@ -35,61 +32,74 @@
     </section>
 
     <!-- FOTKY -->
-    <carousel v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]"/>
+    <carousel v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]" />
   </div>
 </template>
 
 <script>
-import Maps from '@/components/Maps.vue';
-import Carousel from '@/components/Carousel.vue';
+import Maps from "@/components/Maps.vue";
+import Carousel from "@/components/Carousel.vue";
 
 export default {
   data: function() {
     return {
       trips: [],
       shortTrip: {},
-      regions: ["Celá Česká republika", "Hlavní město Praha", "Středočeský kraj", "Jihočeský kraj", "Plzeňský kraj", "Karlovarský kraj", "Ústecký kraj", "Libereceký kraj", "Královéhradecký kraj", "Pardubický kraj", "Kraj Vysočina", "Jihomoravský kraj", "Olomoucký kraj", "Moravskoslezský kraj", "Zlínský kraj", "Zahraničí"],
-      region: '',
+      regions: [
+        "Celá Česká republika",
+        "Hlavní město Praha",
+        "Středočeský kraj",
+        "Jihočeský kraj",
+        "Plzeňský kraj",
+        "Karlovarský kraj",
+        "Ústecký kraj",
+        "Libereceký kraj",
+        "Královéhradecký kraj",
+        "Pardubický kraj",
+        "Kraj Vysočina",
+        "Jihomoravský kraj",
+        "Olomoucký kraj",
+        "Moravskoslezský kraj",
+        "Zlínský kraj",
+        "Zahraničí"
+      ],
+      region: "",
       types: ["Turistika", "Cyklistika", "Ostatní"],
-      type: '',
+      type: "",
       text: []
     };
   },
-
   components: {
-    'maps': Maps,
-    'carousel': Carousel
+    maps: Maps,
+    carousel: Carousel
   },
-
-  props: ['tripID'],
-  /*
+  props: ["tripID"],
+  
   created: function getAllTrips_IncludesUnauthorized() {
     fetch("http://rest.dogtrekking.cz/trips/1")
       .then(response => response.json())
       .then(response => {
         this.trips = response;
-        console.log(this.trips);
         this.shortTrip = this.trips.filter(
           shortTrip2 => shortTrip2.id == this.tripID
         )[0];
         this.region = this.regions[this.shortTrip.kraj];
-        this.type = this.types[this.shortTrip.typ];
-        //this.text = this.shortTrip.odstavce.split(/\r?\n/);
-    });
-  },*/
-  created: function() {
-    this.trips = require('../routes.json');
-    console.log('trips loaded...');
-    this.shortTrip = this.trips.filter(
-          shortTrip2 => shortTrip2.id == this.tripID
-        )[0];
-        this.region = this.regions[this.shortTrip.kraj];
         this.type = this.types[this.shortTrip.typ - 1];
-        this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);
+        this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);  
+    });
   },
+  /*created: function() {
+    this.trips = require("../routes.json");
+    console.log("trips loaded...");
+    this.shortTrip = this.trips.filter(
+      shortTrip2 => shortTrip2.id == this.tripID
+    )[0];
+    this.region = this.regions[this.shortTrip.kraj];
+    this.type = this.types[this.shortTrip.typ - 1];
+    this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);
+  },*/
   watch: {
     tripID: function() {
-      console.log('Detail.vue watch tripID: tripID = ' + this.tripID);
       this.shortTrip = this.trips.filter(
         shortTrip2 => shortTrip2.id == this.tripID
       )[0];
@@ -97,7 +107,7 @@ export default {
       this.type = this.types[this.shortTrip.typ - 1];
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -193,7 +203,7 @@ export default {
   }
 
   body {
-    background-color: #F4F3EE;
+    background-color: #f4f3ee;
   }
 
   .detail {
@@ -208,6 +218,6 @@ export default {
 
   .listOfParameters {
     padding-left: 5%;
-  }  
+  }
 }
 </style>

@@ -7,6 +7,11 @@
 
 <script>
 export default {
+    computed: {
+        tripTrasa: function() {
+            return typeof this.shortTrip === 'undefined' ? null : this.shortTrip.trasa;
+        }
+    },
     mounted: function() {
         console.log('Maps.vue mounted');
 
@@ -15,7 +20,7 @@ export default {
         m.addDefaultLayer(SMap.DEF_TURIST).enable();
         m.addDefaultControls();
 
-        var xmlDoc = JAK.XML.createDocument(this.shortTrip.trasa_gpx); // insert GPX here
+        var xmlDoc = JAK.XML.createDocument(this.tripTrasa); // insert GPX here
 
         var gpx = new SMap.Layer.GPX(xmlDoc, null, {maxPoints:500});
         m.addLayer(gpx); 
@@ -31,7 +36,7 @@ export default {
             m.addDefaultLayer(SMap.DEF_TURIST).enable();
             m.addDefaultControls();
 
-            var xmlDoc = JAK.XML.createDocument(this.shortTrip.trasa_gpx); // insert GPX here
+            var xmlDoc = JAK.XML.createDocument(this.tripTrasa); // insert GPX here
 
             var gpx = new SMap.Layer.GPX(xmlDoc, null, {maxPoints:500});
             m.addLayer(gpx); 
