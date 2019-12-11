@@ -8,9 +8,13 @@
       <div v-on:click="filtrCyklistika">filtr1</div>
       <div v-on:click="filtrOstatni">filtr1</div>
     </div>
+-->
 
-    <div>
-      <div v-for="vylet in filtrovanySeznamVyletu" v-bind:key="vylet.id">{{vylet.nazev}}</div>
+    <!-- PRO MAZANI VYLETU ... -->
+    <!-- <div>
+      <div v-for="vylet in filtrovanySeznamVyletu" v-bind:key="vylet.id">{{vylet.nazev}}
+        <button v-on:click="smazVylet(vylet.id)">Smazni</button>
+      </div>
     </div> -->
   </section>
 </template>
@@ -26,9 +30,19 @@ export default {
   data: function() {
    return {
     seznamVyletu: [],
-  filtrovanySeznamVyletu: []
- };
-},
+    filtrovanySeznamVyletu: []
+   };
+  },
+  methods: {
+    // PRO MAZANI VYLETU ...
+    // smazVylet: function(id) {
+    //   fetch("http://rest.dogtrekking.cz/trips/delete/Czechitas2019/" + id)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     this.seznamVyletu = data;
+    //   });
+    // }
+  },
 
   // methods: {
   //   filtrTuristika() {
@@ -54,14 +68,15 @@ export default {
 
   // },
 
-mounted() {
-fetch("http://rest.dogtrekking.cz/trips/1")
-.then(response => response.json())
-.then(data => {
-this.seznamVyletu = data;
-this.filtrovanySeznamVyletu = data;
-});
-}
+  mounted() {
+    // fetch("http://rest.dogtrekking.cz/trips/1/1") - verze pro stahnuti vyletu bez GPX - v pripade, kdy vylety jiz maji obsazene pole map_position. Rychlejsi, mene narocne na data
+    fetch("http://rest.dogtrekking.cz/trips/1")
+    .then(response => response.json())
+    .then(data => {
+      this.seznamVyletu = data;
+      this.filtrovanySeznamVyletu = data;
+    });
+  }
 }
 
 

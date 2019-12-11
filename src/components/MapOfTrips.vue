@@ -11,60 +11,50 @@ export default {
     }
   },
   mounted () {
-        var center = SMap.Coords.fromWGS84(17.400307, 49.571853); 
-        var m = new SMap(JAK.gel("mapa"), center, 6); 
-        m.addControl(new SMap.Control.Sync());
-        m.addDefaultLayer(SMap.DEF_TURIST).enable(); 
-        m.addDefaultControls(); 
+    let utils = document.createElement('script');
+    utils.setAttribute('src', '/utils.js');
+    document.head.appendChild(utils);
 
-        this.markerLayer = new SMap.Layer.Marker(); 
-                                                    
-        m.addLayer(this.markerLayer);
-        this.markerLayer.enable();
+    var center = SMap.Coords.fromWGS84(17.400307, 49.571853); 
+    var m = new SMap(JAK.gel("mapa"), center, 6); 
+    m.addControl(new SMap.Control.Sync());
+    m.addDefaultLayer(SMap.DEF_TURIST).enable(); 
+    m.addDefaultControls(); 
+
+    this.markerLayer = new SMap.Layer.Marker(); 
+                                                
+    m.addLayer(this.markerLayer);
+    this.markerLayer.enable();
   },
   watch: {
 
     trips: function() {
       this.trips.forEach(ele => {    
-        let startLat = 0;
-        let startLon = 0;
-        let xmlDoc = JAK.XML.createDocument(ele.trasa); 
-        let tracks = xmlDoc.getElementsByTagName("trk");  
+        let startPos = {};
 
+        if (typeof(ele.map_position) !== 'undefined' && ele.map_position !== null && ele.map_position.lat !== 0.0 && ele.map_position.lon !== 0.0) {
+          startPos = ele.map_position;
+        }
+        else {
+          startPos = getFirstPointFromGpx(ele.trasa);
+        }
 
-        for (let i = 0; i < tracks.length; i ++ ) {
-          var segments = tracks[i].getElementsByTagName("trkseg");
+        if (startPos.lat !== 0.0 && startPos.lon !== 0.0) {
+            let centerOfThisTrip = SMap.Coords.fromWGS84(startPos.lon, startPos.lat);  
 
-          for (let j = 0; j < segments.length; j ++ ) {
-            let pts = segments[j].getElementsByTagName("trkpt");
-            startLat = pts[0].attributes['lat'].value;            
-            startLon = pts[0].attributes['lon'].value;
+            ele.card = new SMap.Card();                                       
+            ele.card.getHeader().innerHTML = "<strong>" + ele.nazev + "</strong>";
+            ele.card.getBody().innerHTML = ele.zajimavosti;
+            
+            let options = {
+              title: ele.nazev            
+            };
 
-            break;                                                
+            ele.marker = new SMap.Marker(centerOfThisTrip, ele.nazev + ele.id, options);  
+            ele.marker.decorate(SMap.Marker.Feature.Card, ele.card);
+
+            this.markerLayer.addMarker(ele.marker);
           }
-
-          if (startLat !== 0 && startLon !== 0)                   
-            break;
-        }
-
-        if (parseFloat(startLat) !== 0 && parseFloat(startLon) !== 0) {
-          let centerOfThisTrip = SMap.Coords.fromWGS84(parseFloat(startLon), parseFloat(startLat));  
-          console.log(ele.nazev);
-          console.log(centerOfThisTrip);
-
-          ele.card = new SMap.Card();                                       
-          ele.card.getHeader().innerHTML = "<strong>" + ele.nazev + "</strong>";
-          ele.card.getBody().innerHTML = ele.zajimavosti;
-          
-          let options = {
-            title: ele.nazev            
-          };
-
-          ele.marker = new SMap.Marker(centerOfThisTrip, ele.nazev + ele.id, options);  
-          ele.marker.decorate(SMap.Marker.Feature.Card, ele.card);
-
-          this.markerLayer.addMarker(ele.marker);
-        }
       });
     }
   },

@@ -114,8 +114,16 @@ export default {
 
       fotky: [],
 
+      map_position: { lat: 0.0, lon: 0.0 },
+
       savingOK: false,
     };
+  },
+
+  mounted () {
+    let utils = document.createElement('script');
+    utils.setAttribute('src', '/utils.js');
+    document.head.appendChild(utils);
   },
 
   methods: {
@@ -177,7 +185,7 @@ export default {
       .then(json => {
         if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
           this.trasa_gpx = json.GpxContent; 
-                                            
+          this.map_position = getFirstPointFromGpx(json.GpxContent);
       });
     },
 
@@ -192,7 +200,8 @@ export default {
         odstavce: this.odstavce,
         fotky: this.fotky,
         trasa: this.trasa_gpx,
-        trasa_link: this.trasa
+        trasa_link: this.trasa,
+        map_position: this.map_position
       };
 
       var obj = {};
@@ -221,8 +230,7 @@ export default {
         this.trasa = "";
         this.trasa_gpx = "";
         this.fotky = [];
-
-
+        this.map_position = { lat: 0.0, lon: 0.0 };
 
         const inputFotky = this.$refs.Fotky;
         inputFotky.type = 'text';
@@ -232,8 +240,6 @@ export default {
         inputGpx.type = 'text';
         inputGpx.type = 'file';
 
-
-     
         this.savingOK = false;
       });
     }
