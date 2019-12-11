@@ -187,7 +187,7 @@ export default {
         nazev: this.nazevVyletu,
         typ: this.vybranyTyp,
         kraj: this.vybranyKraj,
-
+        delka: this.delka,
         zajimavosti: this.zajimavosti,
         odstavce: this.odstavce,
         fotky: this.fotky,
