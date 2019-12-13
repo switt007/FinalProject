@@ -33,8 +33,8 @@ Popis výletu a zajímavosti na trase:
     Trasa: <input type="text" id="pridejVylet_nadpis" v-model="trasa" placeholder="Sem zadej odkaz z mapy.cz"/><br />
 
     <div>    
-      <label for='vyber_fotky'>Vyber fotky:</label>
-      <input type="file" name='vyber_fotky' multiple ref="Fotky" v-on:change="handleFiles" value="Vyber fotky" />
+      <input type="file" name='fotky' id="fotky" accept=".jpeg,.jpg" class="inputfile" multiple ref="Fotky" v-on:change="handleFiles" />
+      <label for='fotky'>Vyber fotky:</label>
       <div v-if="photouploading">Nahrávám fotku/y na server, moment ...</div>
 
       <div v-for="(fotka, index) in fotky" v-bind:key="index" class='fotka'>
@@ -48,10 +48,10 @@ Popis výletu a zajímavosti na trase:
       </div>
     </div>
 
-<br />
+    <br />
     <div>
+      <input class="inputfile" type="file" name='vyber_gpx' id="vyber_gpx" accept=".gpx" ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
       <label for='vyber_gpx'>Vyber GPX soubor, pokud máš:</label>
-      <input type="file" name='vyber_gpx' ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
     </div>
 
 
@@ -300,6 +300,32 @@ input {
   border-radius: 5px;
   padding: 10px;
 
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1em;
+    font-weight: 500;
+    color: white;
+    background-color: rgb(148, 23, 19);
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+    outline: 1px dotted #000;
+	  outline: -webkit-focus-ring-color auto 5px;
+    border-radius: 5px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
 }
 
 select {

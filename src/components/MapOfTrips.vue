@@ -15,8 +15,8 @@ export default {
     utils.setAttribute('src', '/utils.js');
     document.head.appendChild(utils);
 
-    var center = SMap.Coords.fromWGS84(17.400307, 49.571853); 
-    var m = new SMap(JAK.gel("mapa"), center, 6); 
+    let center = SMap.Coords.fromWGS84(15.3127175, 49.9687053); 
+    let m = new SMap(JAK.gel("mapa"), center, 7); 
     m.addControl(new SMap.Control.Sync());
     m.addDefaultLayer(SMap.DEF_TURIST).enable(); 
     m.addDefaultControls(); 
@@ -43,8 +43,8 @@ export default {
             let centerOfThisTrip = SMap.Coords.fromWGS84(startPos.lon, startPos.lat);  
 
             ele.card = new SMap.Card();                                       
-            ele.card.getHeader().innerHTML = "<strong>" + ele.nazev + "</strong>";
-            ele.card.getBody().innerHTML = ele.zajimavosti;
+            ele.card.getHeader().innerHTML = "<a class='map' href='/detail/" + ele.id + "'><strong>" + ele.nazev + "</strong></a>";
+            ele.card.getBody().innerHTML = " ";
             
             let options = {
               title: ele.nazev            
@@ -61,7 +61,21 @@ export default {
 }
 </script>
 
+
+
+
 <style scoped>
+  a.map, p.map {
+    color: black;
+
+  }
+
+  a:link {
+  color: darkolivegreen;
+  text-decoration: none;
+}
+
+
   div.mapa {
       height: 500px;
       width: 700px;
