@@ -186,7 +186,7 @@ footer {
   font-size: 14px;
 }
 
-a {
+a:not(.map) {
   color: white;
 }
 
