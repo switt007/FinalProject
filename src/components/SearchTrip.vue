@@ -96,6 +96,7 @@ export default {
       .then(response => {
         this.trips = response;
         this.generateArrayOfAuthors();
+        console.log(this.trips);
    });
   },
 

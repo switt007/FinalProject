@@ -6,6 +6,7 @@
     paginationActiveColor="#463F3A"
     paginationColor="#BCB8B1"
     :autoplay="true"
+    :loop="true"
     :autoplayTimeout="2500"
     easing="linear"
   >

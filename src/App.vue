@@ -116,6 +116,8 @@ header {
 .title {
   font-size: 42px;
   padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .saying {
