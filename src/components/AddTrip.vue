@@ -24,13 +24,12 @@
     />
    
 
-Popis výletu a zajímavosti na trase:
- 
+Popis výletu a zajímavosti na trase: <textarea v-model="odstavce[0].text"></textarea>  
 
-        <textarea v-model="odstavce[0].text"></textarea>  
+<hr/>
 
 
-    Trasa: <input type="text" id="pridejVylet_nadpis" v-model="trasa" placeholder="Sem zadej odkaz z mapy.cz"/><br />
+
 
     <div>    
       <input type="file" name='fotky' id="fotky" accept=".jpeg,.jpg" class="inputfile" multiple ref="Fotky" v-on:change="handleFiles" />
@@ -51,7 +50,7 @@ Popis výletu a zajímavosti na trase:
     <br />
     <div>
       <input class="inputfile" type="file" name='vyber_gpx' id="vyber_gpx" accept=".gpx" ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
-      <label for='vyber_gpx'>Vyber GPX soubor, pokud máš:</label>
+      <label for='vyber_gpx'>Vyber GPX soubor:</label>
     </div>
 
 
@@ -109,7 +108,6 @@ export default {
         text: ''
       }],
 
-      trasa: "",
       trasa_gpx: "",
 
       fotky: [],
@@ -180,7 +178,7 @@ export default {
         credentials: 'same-origin',
       };
 
-      fetch('http://rest.dogtrekking.cz/trips/addgpx', obj)
+      fetch('http://rest.dogtrekking.cz/gpx/add', obj)
       .then(response => response.json())
       .then(json => {
         if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
@@ -188,6 +186,9 @@ export default {
           this.map_position = getFirstPointFromGpx(json.GpxContent);
       });
     },
+
+// zmena !!! fetch('http://rest.dogtrekking.cz/trips/addgpx', obj) na fetch('http://rest.dogtrekking.cz/gpx/add', obj)
+
 
     pridatVylet() {
       let newTrip = {
@@ -282,7 +283,7 @@ export default {
 }
 
 .button_addTrip {
-  background-image: linear-gradient(to top left,#9dff00,#007510);
+  background-color: blue;
   padding: 20px;
   width: 300px;
   border-radius: 5px;
@@ -312,10 +313,10 @@ input {
 }
 
 .inputfile + label {
-    font-size: 1em;
+    font-size: 0,5 em;
     font-weight: 500;
     color: white;
-    background-color: rgb(148, 23, 19);
+    background-color: rgb(255, 0, 157);
     display: inline-block;
     cursor: pointer; /* "hand" cursor */
     outline: 1px dotted #000;
@@ -325,7 +326,7 @@ input {
 
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: red;
+    background-color: greenyellow
 }
 
 select {
@@ -364,7 +365,7 @@ textarea {
 /* The alert message box */
 .alert {
   padding: 20px;
-  background-image: linear-gradient(to top left,#9dff00,#007510);
+  background-image: linear-gradient(to top left,#749146,#007510);
   color: white;
   margin-bottom: 15px;
 }
