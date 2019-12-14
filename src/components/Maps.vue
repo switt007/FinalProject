@@ -6,13 +6,17 @@
 
 
 <script>
+import {gpx} from '@tmcw/togeojson';
+import * as turf from '@turf/turf';
+
+
 export default {
     computed: {
         tripTrasa: function() {
-            return typeof this.shortTrip === 'undefined' ? null : this.shortTrip.trasa;
+            return this.shortTrip ? this.shortTrip.trasa : null;
         }
     },
-    mounted: function() {
+    /*mounted: function() {
         console.log('Maps.vue mounted');
 
         var center = SMap.Coords.fromWGS84(14.400307, 50.071853);
@@ -22,11 +26,17 @@ export default {
 
         var xmlDoc = JAK.XML.createDocument(this.tripTrasa); // insert GPX here
 
-        var gpx = new SMap.Layer.GPX(xmlDoc, null, {maxPoints:500});
-        m.addLayer(gpx); 
-        gpx.enable(); 
-        gpx.fit();
-    },
+        var geoJson = gpx(xmlDoc);
+        console.log(geoJson);
+
+        var lengthTrip = length(geoJson);
+        console.log(lengthTrip);
+
+        var gpx2 = new SMap.Layer.GPX(xmlDoc, null, {maxPoints:500});
+        m.addLayer(gpx2); 
+        gpx2.enable(); 
+        gpx2.fit();
+    },*/
     watch: {
         shortTrip: function() {
             console.log('Maps.vue watch');
@@ -38,10 +48,10 @@ export default {
 
             var xmlDoc = JAK.XML.createDocument(this.tripTrasa); // insert GPX here
 
-            var gpx = new SMap.Layer.GPX(xmlDoc, null, {maxPoints:500});
-            m.addLayer(gpx); 
-            gpx.enable(); 
-            gpx.fit();
+            var gpx2 = new SMap.Layer.GPX(xmlDoc, null, {maxPoints:500});
+            m.addLayer(gpx2); 
+            gpx2.enable(); 
+            gpx2.fit();
         }
     },
     props: ['shortTrip']

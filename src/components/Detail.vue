@@ -16,12 +16,12 @@
           <!-- typ -->
           <li>{{ type }}</li>
           <!-- delka -->
-          <li>{{ shortTrip.delka }} km</li>
+          <li>{{ delka }} km</li>
         </ul>
       </section>
 
       <!-- MAPA -->
-      <maps class="maps" v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]" />
+      <maps class="maps" v-bind:shortTrip="shortTrip" />
     </div>
 
     <!-- TEXT -->
@@ -32,13 +32,15 @@
     </section>
 
     <!-- FOTKY -->
-    <carousel v-bind:shortTrip="trips.filter(trip => trip.id == tripID)[0]" />
+    <carousel v-bind:shortTrip="shortTrip" />
   </div>
 </template>
 
 <script>
 import Maps from "@/components/Maps.vue";
 import Carousel from "@/components/Carousel.vue";
+import {gpx} from '@tmcw/togeojson';
+import * as turf from '@turf/turf';
 
 export default {
   data: function() {
@@ -66,7 +68,8 @@ export default {
       region: "",
       types: ["Turistika", "Cyklistika", "Ostatní"],
       type: "",
-      text: []
+      text: [],
+      delka: null
     };
   },
   components: {
@@ -86,6 +89,10 @@ export default {
         this.region = this.regions[this.shortTrip.kraj];
         this.type = this.types[this.shortTrip.typ - 1];
         this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);  
+
+        let gpxObject = this.getTripGPX(this.shortTrip);
+        this.delka = this.getGPXLength(gpxObject);
+
     });
   },
   /*created: function() {
@@ -105,6 +112,15 @@ export default {
       )[0];
       this.region = this.regions[this.shortTrip.kraj];
       this.type = this.types[this.shortTrip.typ - 1];
+    }
+  },
+  methods: {
+    getTripGPX(shortTrip) {
+      return JAK.XML.createDocument(shortTrip.trasa); 
+    },
+    getGPXLength(gpxObject) {
+      var geoJson = gpx(gpxObject);
+      return turf.length(geoJson);
     }
   }
 };

@@ -7,6 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@tmcw/togeojson": "^3.0.1",
+    "@turf/length": "^6.0.2",
+    "@turf/turf": "^5.1.6",
     "core-js": "^3.3.2",
     "vue": "^2.6.10",
     "vue-carousel": "^0.18.0",

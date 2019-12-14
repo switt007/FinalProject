@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
 import VueCarousel from 'vue-carousel';
+import {gpx} from '@tmcw/togeojson';
 
 import SearchTrip from './components/SearchTrip.vue';
 import AddTrip from './components/AddTrip.vue';
