@@ -11,11 +11,11 @@ import * as turf from '@turf/turf';
 
 
 export default {
-    computed: {
+    /*computed: {
         tripTrasa: function() {
             return this.shortTrip ? this.shortTrip.trasa : null;
         }
-    },
+    },*/
     /*mounted: function() {
         console.log('Maps.vue mounted');
 
@@ -37,24 +37,18 @@ export default {
         gpx2.enable(); 
         gpx2.fit();
     },*/
-    watch: {
-        shortTrip: function() {
-            console.log('Maps.vue watch');
+    mounted: function() {
+        var center = SMap.Coords.fromWGS84(14.400307, 50.071853);
+        var m = new SMap(JAK.gel("myMap"), center, 5);
+        m.addDefaultLayer(SMap.DEF_TURIST).enable();
+        m.addDefaultControls();
 
-            var center = SMap.Coords.fromWGS84(14.400307, 50.071853);
-            var m = new SMap(JAK.gel("myMap"), center, 5);
-            m.addDefaultLayer(SMap.DEF_TURIST).enable();
-            m.addDefaultControls();
-
-            var xmlDoc = JAK.XML.createDocument(this.tripTrasa); // insert GPX here
-
-            var gpx2 = new SMap.Layer.GPX(xmlDoc, null, {maxPoints:500});
-            m.addLayer(gpx2); 
-            gpx2.enable(); 
-            gpx2.fit();
-        }
+        var gpx2 = new SMap.Layer.GPX(this.gpxObject, null, {maxPoints:500});
+        m.addLayer(gpx2); 
+        gpx2.enable(); 
+        gpx2.fit();
     },
-    props: ['shortTrip']
+    props: ['gpxObject']
 }
 
 </script>

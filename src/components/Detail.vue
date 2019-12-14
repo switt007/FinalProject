@@ -21,7 +21,7 @@
       </section>
 
       <!-- MAPA -->
-      <maps class="maps" v-bind:shortTrip="shortTrip" />
+      <maps class="maps" v-bind:gpxObject="gpxObject" v-if="gpxObject"/>
     </div>
 
     <!-- TEXT -->
@@ -69,7 +69,8 @@ export default {
       types: ["Turistika", "Cyklistika", "Ostatní"],
       type: "",
       text: [],
-      delka: null
+      delka: null,
+      gpxObject: null
     };
   },
   components: {
@@ -81,19 +82,20 @@ export default {
   created: function getAllTrips_IncludesUnauthorized() {
     fetch("http://rest.dogtrekking.cz/trips/1")
       .then(response => response.json())
-      .then(response => {
-        this.trips = response;
-        this.shortTrip = this.trips.filter(
+      .then(trips => {
+        this.shortTrip = trips.filter(
           shortTrip2 => shortTrip2.id == this.tripID
         )[0];
         this.region = this.regions[this.shortTrip.kraj];
         this.type = this.types[this.shortTrip.typ - 1];
-        this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);  
-
-        let gpxObject = this.getTripGPX(this.shortTrip);
-        this.delka = this.getGPXLength(gpxObject);
-
-    });
+        this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/); 
+      })
+      .then(response => this.fetchGPX(this.shortTrip.trasa))
+      .then(GPX => {
+        this.gpxObject = this.getTripGPX(GPX);
+        this.delka = Math.round(this.getGPXLength(this.gpxObject));
+      }
+    );
   },
   /*created: function() {
     this.trips = require("../routes.json");
@@ -105,7 +107,7 @@ export default {
     this.type = this.types[this.shortTrip.typ - 1];
     this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);
   },*/
-  watch: {
+  /*watch: {
     tripID: function() {
       this.shortTrip = this.trips.filter(
         shortTrip2 => shortTrip2.id == this.tripID
@@ -113,14 +115,18 @@ export default {
       this.region = this.regions[this.shortTrip.kraj];
       this.type = this.types[this.shortTrip.typ - 1];
     }
-  },
+  },*/
   methods: {
-    getTripGPX(shortTrip) {
-      return JAK.XML.createDocument(shortTrip.trasa); 
+    getTripGPX(GPX) {
+      return JAK.XML.createDocument(GPX); 
     },
     getGPXLength(gpxObject) {
       var geoJson = gpx(gpxObject);
       return turf.length(geoJson);
+    },
+    fetchGPX(Guid) {
+      return fetch(`http://rest.dogtrekking.cz/gpx/${Guid}`)
+      .then(response=>response.json());
     }
   }
 };
