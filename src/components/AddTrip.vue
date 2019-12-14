@@ -52,7 +52,7 @@ Popis výletu a zajímavosti na trase: <textarea v-model="odstavce[0].text"></te
     <div>
       <input class="inputfile" type="file" name='vyber_gpx' id="vyber_gpx" accept=".gpx" ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
       <label for='vyber_gpx'>Vyber GPX soubor:</label>
-      <div v-if='trasa_nahrana'>GPX nahráno</div>
+      <div v-if='trasa_nahrana' class="gpxOk">GPX nahráno</div>
     </div>
 
 
@@ -186,6 +186,7 @@ export default {
       .then(json => {
         if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
           this.trasa_gpx = json.Id; 
+          this.map_position = getFirstPointFromGpx(json.GpxContent);
           this.trasa_nahrana = true;
       });
     },
@@ -253,18 +254,21 @@ export default {
 .fotka {
   display: flex;
   flex-flow: row;
+  border: 1px solid rgb(53, 50, 50);
+  margin: 5px;
 }
 
 .fotkaimg {
   display: flex;
   width: 100px;
-  margin-right: 10px;
+  margin: 5px;
 }
 
 .fotkainfo {
   display: flex;
   flex-flow: column;
   width: 100%;
+  margin: 5px;
 }
 
 .addTrip {
@@ -282,7 +286,7 @@ export default {
 }
 
 .button_addTrip {
-  background-color: blue;
+  background-color: rgb(111, 180, 65);
   padding: 20px;
   width: 300px;
   border-radius: 5px;
@@ -292,6 +296,7 @@ export default {
   font-size: 20px;
   display: flex;
   justify-content: center;
+  box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
 
 }
 
@@ -311,16 +316,23 @@ input {
 	z-index: -1;
 }
 
+.gpxOk {
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+
 .inputfile + label {
     font-size: 0,5 em;
     font-weight: 500;
     color: white;
     background-color: rgb(255, 0, 157);
-    display: inline-block;
+    padding: 20px;
     cursor: pointer; /* "hand" cursor */
-    outline: 1px dotted #000;
-	  outline: -webkit-focus-ring-color auto 5px;
+  display: flex;
+  justify-content: center;
     border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
 }
 
 .inputfile:focus + label,
