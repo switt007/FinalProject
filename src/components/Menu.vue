@@ -13,7 +13,7 @@
       >Přidej výlet</li>
       <li
         class="liMenu"
-        v-on:click="changePage('/listOfTrips')"
+        v-on:click="changePage('/listOfTrips#mapTripID')"
         v-bind:class="{aktivni:this.$route.path=='/listOfTrips'}"
       >Mapa výletů</li>
     </ul>

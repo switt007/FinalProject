@@ -1,6 +1,6 @@
 <template>
-  <section class="listOfTrips">
-    <div class="mapa">
+  <section class="listOfTrips" id="mapTripID">
+    <div class="mapa" id="mapTripID">
       <mapavyletu v-bind:trips="filtrovanySeznamVyletu" />
     </div>
     <!-- <div>

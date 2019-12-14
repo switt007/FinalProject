@@ -4,83 +4,107 @@
 
 <script>
 export default {
-  props: [ 'trips' ],
+  props: ["trips"],
   data() {
     return {
       markerLayer: null
-    }
+    };
   },
-  mounted () {
-    let utils = document.createElement('script');
-    utils.setAttribute('src', '/utils.js');
+  mounted() {
+    let utils = document.createElement("script");
+    utils.setAttribute("src", "/utils.js");
     document.head.appendChild(utils);
 
-    let center = SMap.Coords.fromWGS84(15.3127175, 49.9687053); 
-    let m = new SMap(JAK.gel("mapa"), center, 7); 
+    let center = SMap.Coords.fromWGS84(15.3127175, 49.9687053);
+    let m = new SMap(JAK.gel("mapa"), center, 7);
     m.addControl(new SMap.Control.Sync());
-    m.addDefaultLayer(SMap.DEF_TURIST).enable(); 
-    m.addDefaultControls(); 
+    m.addDefaultLayer(SMap.DEF_TURIST).enable();
+    m.addDefaultControls();
 
-    this.markerLayer = new SMap.Layer.Marker(); 
-                                                
+    this.markerLayer = new SMap.Layer.Marker();
+
     m.addLayer(this.markerLayer);
     this.markerLayer.enable();
   },
   watch: {
-
     trips: function() {
-      this.trips.forEach(ele => {    
+      const types = {
+          "1": "images/icon.png",
+          "2": "images/bicycle-rider.png",
+          "3": "default"
+          };
+
+      this.trips.forEach(ele => {
         let startPos = {};
 
-        if (typeof(ele.map_position) !== 'undefined' && ele.map_position !== null && ele.map_position.lat !== 0.0 && ele.map_position.lon !== 0.0) {
+        if (
+          typeof ele.map_position !== "undefined" &&
+          ele.map_position !== null &&
+          ele.map_position.lat !== 0.0 &&
+          ele.map_position.lon !== 0.0
+        ) {
           startPos = ele.map_position;
-        }
-        else {
+        } else {
           startPos = getFirstPointFromGpx(ele.trasa);
         }
 
         if (startPos.lat !== 0.0 && startPos.lon !== 0.0) {
-            let centerOfThisTrip = SMap.Coords.fromWGS84(startPos.lon, startPos.lat);  
+          let centerOfThisTrip = SMap.Coords.fromWGS84(
+            startPos.lon,
+            startPos.lat
+          );
 
-            ele.card = new SMap.Card();                                       
-            ele.card.getHeader().innerHTML = "<a class='map' href='/detail/" + ele.id + "'><strong>" + ele.nazev + "</strong></a>";
-            ele.card.getBody().innerHTML = " ";
-            
-            let options = {
-              title: ele.nazev            
-            };
+          ele.card = new SMap.Card();
+          ele.card.getHeader().innerHTML =
+            "<a class='map' href='/detail/" +
+            ele.id +
+            "'><strong>" +
+            ele.nazev +
+            "</strong></a>";
+          ele.card.getBody().innerHTML = " ";
 
-            ele.marker = new SMap.Marker(centerOfThisTrip, ele.nazev + ele.id, options);  
-            ele.marker.decorate(SMap.Marker.Feature.Card, ele.card);
+          
 
-            this.markerLayer.addMarker(ele.marker);
-          }
+          let options = {
+            title: ele.nazev,
+            url: types[ele.typ]
+          };
+
+          ele.marker = new SMap.Marker(
+            centerOfThisTrip,
+            ele.nazev + ele.id,
+            options
+          );
+          ele.marker.decorate(SMap.Marker.Feature.Card, ele.card);
+
+          this.markerLayer.addMarker(ele.marker);
+          console.log(ele.typ);
+        }
       });
     }
-  },
-}
+  }
+};
 </script>
 
 
 
 
 <style scoped>
-  a.map, p.map {
-    color: black;
+a.map,
+p.map {
+  color: black;
+}
 
-  }
-
-  a:link {
+a:link {
   color: darkolivegreen;
   text-decoration: none;
 }
 
-
-  div.mapa {
-      height: 500px;
-      width: 700px;
-      /*border: 1px solid rgb(53, 50, 50);*/
-      border: 3px solid #8A817C;
-      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
-  }
+div.mapa {
+  height: 500px;
+  width: 700px;
+  /*border: 1px solid rgb(53, 50, 50);*/
+  border: 3px solid #8a817c;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+}
 </style>
