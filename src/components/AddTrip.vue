@@ -265,16 +265,18 @@ export default {
 .fotka {
   display: flex;
   flex-flow: row;
-  border: 1px solid rgb(92, 91, 91);
+  border: $mainBorder;
   margin: 5px;
   border-radius: 5px;
+  box-shadow: $boxShahow;
 }
 
 .fotkaimg {
   display: flex;
   width: 100px;
   margin: 5px;
-  border: 1px solid rgb(92, 91, 91);
+  border: $mainBorder;
+
 }
 
 .fotkainfo {
@@ -295,8 +297,9 @@ export default {
   margin-top: 5%;
   margin-bottom: 5%;
   color: #463f3a;
-  box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
+  box-shadow: $boxShahow;
   padding: 15px;
+  border: $mainBorder
 }
 
 .button_addTrip {
@@ -310,7 +313,7 @@ export default {
   font-size: 20px;
   display: flex;
   justify-content: center;
-  box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
+  box-shadow: $boxShahow;
 }
 
 input {
@@ -345,13 +348,13 @@ input {
   display: flex;
   justify-content: center;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
+  box-shadow: $boxShahow;
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
   /*background-color: rgb(111, 180, 65);*/
-  background-color: #bcb8b1;
+  background-color: $addTripHover;
   color: #463f3a;
 }
 
@@ -375,7 +378,9 @@ textarea {
 }
 
 .button_addTrip:hover {
-  background-color: #8c443e;
+  background-color: $addTripHover;
+  cursor: pointer;
+  color: #463f3a;
 }
 
 .button_center {
