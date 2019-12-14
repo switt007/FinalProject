@@ -164,7 +164,7 @@ export default {
 
 
 
-<style>
+<style lang="scss">
 .searchTripH3 {
   margin-left: 5%;
   font-size: 20px;
