@@ -31,18 +31,6 @@ export default {
     }
   },
 
-  /*created: function() {
-    this.trips = require('../routes.json');
-    console.log('trips loaded...');
-    for (let i = 0; i < 2; i++) {
-      let item = Math.floor(Math.random() * this.trips.length);
-      this.randomTrips.push(this.trips[item]);
-      this.trips = this.trips.slice(0,item).concat(this.trips.slice(item+1, this.trips.length));
-    }
-    console.log(this.randomTrips);
-    console.log(this.trips);
-  }*/
-
   created: function getAllTrips_IncludesUnauthorized() {
     fetch("http://rest.dogtrekking.cz/trips/1")
       .then(response => response.json())

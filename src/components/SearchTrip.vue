@@ -101,11 +101,6 @@ export default {
    });
   },
 
-  /*created: function() {
-    this.trips = require("../routes.json");
-    this.generateArrayOfAuthors();
-  },*/
-
   methods: {
     filterRegion(event) {
       console.log("method filterTrips executed...");
@@ -113,7 +108,6 @@ export default {
       this.filterTrips();
     },
     generateArrayOfAuthors() {
-      //this.arrayOfAuthors.push("Všichni");
       this.trips.forEach(trip => {
         trip.autor = trip.autor.trim();
         if (!this.arrayOfAuthors.includes(trip.autor)) {

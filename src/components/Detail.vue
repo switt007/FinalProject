@@ -97,25 +97,6 @@ export default {
       }
     );
   },
-  /*created: function() {
-    this.trips = require("../routes.json");
-    console.log("trips loaded...");
-    this.shortTrip = this.trips.filter(
-      shortTrip2 => shortTrip2.id == this.tripID
-    )[0];
-    this.region = this.regions[this.shortTrip.kraj];
-    this.type = this.types[this.shortTrip.typ - 1];
-    this.text = this.shortTrip.odstavce[0].text.split(/\r?\n/);
-  },*/
-  /*watch: {
-    tripID: function() {
-      this.shortTrip = this.trips.filter(
-        shortTrip2 => shortTrip2.id == this.tripID
-      )[0];
-      this.region = this.regions[this.shortTrip.kraj];
-      this.type = this.types[this.shortTrip.typ - 1];
-    }
-  },*/
   methods: {
     getTripGPX(GPX) {
       return JAK.XML.createDocument(GPX); 
