@@ -299,7 +299,6 @@ export default {
   color: #463f3a;
   box-shadow: $boxShahow;
   padding: 15px;
-  border: $mainBorder
 }
 
 .button_addTrip {

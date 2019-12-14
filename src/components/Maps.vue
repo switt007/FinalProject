@@ -6,9 +6,6 @@
 
 
 <script>
-import {gpx} from '@tmcw/togeojson';
-import * as turf from '@turf/turf';
-
 
 export default {
     /*computed: {
@@ -62,6 +59,7 @@ export default {
     margin-right: 5%;
     height: 250px;
     margin-bottom: 0;
+    box-sizing: border-box;
 }
 
 @media (min-width: 500px) {

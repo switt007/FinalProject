@@ -124,8 +124,8 @@ export default {
       var geoJson = gpx(gpxObject);
       return turf.length(geoJson);
     },
-    fetchGPX(Guid) {
-      return fetch(`http://rest.dogtrekking.cz/gpx/${Guid}`)
+    fetchGPX(guid) {
+      return fetch(`http://rest.dogtrekking.cz/gpx/${guid}`)
       .then(response=>response.json());
     }
   }
@@ -174,6 +174,10 @@ export default {
 .tripTextSection {
   margin-top: 10%;
   margin-bottom: 10%;
+}
+
+li {
+  list-style-type: disc;
 }
 
 /* TABLET */

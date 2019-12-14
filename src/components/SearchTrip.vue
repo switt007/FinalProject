@@ -149,7 +149,7 @@ export default {
     filterTrips() {
     this.filteredTrips = this.trips.filter(trip => trip.typ == this.tripTyp);
     this.filteredTrips = this.tripKraj !== 0 ? this.filteredTrips.filter(trip => trip.kraj == this.tripKraj) : this.filteredTrips;
-    //this.filteredTrips = this.tripAutor !== 'Všichni' ? this.filteredTrips.filter(trip => trip.autor == this.tripAutor) : this.filteredTrips;
+    this.filteredTrips = this.tripAutor !== 'Všichni' ? this.filteredTrips.filter(trip => trip.autor == this.tripAutor) : this.filteredTrips;
     console.log(this.filteredTrips);
     },
 

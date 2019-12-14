@@ -52,6 +52,10 @@ export default {
           let item = Math.floor(Math.random() * this.trips.length);
           this.randomTrips.push(this.trips[item]);
           this.trips = this.trips.slice(0, item).concat(this.trips.slice(item + 1, this.trips.length));
+          // this.trips = [
+          //   ...this.trips.slice(0, item),
+          //   ...this.trips.slice(item + 1, this.trips.length)
+          // ]
        }
     });
   }
