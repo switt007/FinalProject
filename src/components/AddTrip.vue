@@ -15,13 +15,7 @@
   
     <div class="filterLap">
 
-    </div>Délka výletu (km):
-    <input
-      type="text"
-      id="pridejVylet_nadpis"
-      v-model="delka"
-      placeholder="Zadej délku"
-    />
+    </div>
    
 
 Popis výletu a zajímavosti na trase: <textarea v-model="odstavce[0].text"></textarea>  
@@ -42,7 +36,7 @@ Popis výletu a zajímavosti na trase: <textarea v-model="odstavce[0].text"></te
         </div>
         <div class='fotkainfo'>
           <input type='text' v-model="fotka.popisek" placeholder="Popisek fotky" />
-          <input type='text' v-model="fotka.alt" placeholder="Alternativní text namísto fotky" /> 
+
         </div>
       </div>
     </div>
@@ -104,8 +98,6 @@ export default {
       autor: "",
 
       nazevVyletu: "",
-
-      delka: "",
 
       odstavce: [{
         text: ''
@@ -254,21 +246,26 @@ export default {
 .fotka {
   display: flex;
   flex-flow: row;
-  border: 1px solid rgb(53, 50, 50);
+  border: 1px solid rgb(92, 91, 91);
   margin: 5px;
+  border-radius: 5px;
 }
 
 .fotkaimg {
   display: flex;
   width: 100px;
   margin: 5px;
+  border: 1px solid rgb(92, 91, 91);
+
 }
 
 .fotkainfo {
   display: flex;
   flex-flow: column;
+  justify-content: center;
   width: 100%;
   margin: 5px;
+  border-radius: 5px;
 }
 
 .addTrip {
@@ -281,7 +278,7 @@ export default {
   margin-bottom: 5%;
   color: #463f3a;
   box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
-  padding: 20px;
+  padding: 15px;
 
 }
 
@@ -326,7 +323,7 @@ input {
     font-size: 0,5 em;
     font-weight: 500;
     color: white;
-    background-color: rgb(255, 0, 157);
+    background-color: #8C443E;
     padding: 20px;
     cursor: pointer; /* "hand" cursor */
   display: flex;
@@ -337,7 +334,7 @@ input {
 
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: greenyellow
+    background-color: rgb(111, 180, 65);
 }
 
 select {
@@ -364,21 +361,13 @@ textarea {
 }
 
 .button_addTrip:hover {
-  background-image: linear-gradient(to top left,#b700ff,#250075);
+  background-color: #8C443E;
 
 }
 
 .button_center {
   display: flex;
   justify-content: center;
-}
-
-/* The alert message box */
-.alert {
-  padding: 20px;
-  background-image: linear-gradient(to top left,#749146,#007510);
-  color: white;
-  margin-bottom: 15px;
 }
 
 /* The close button */
