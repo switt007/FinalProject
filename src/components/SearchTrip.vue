@@ -169,6 +169,7 @@ export default {
   margin-left: 5%;
   font-size: 20px;
   color: #463f3a;
+  margin-top: 0;
 }
 
 .filterType {

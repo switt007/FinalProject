@@ -79,7 +79,8 @@ export default {
   div.mapa {
       height: 500px;
       width: 700px;
-      border: 1px solid rgb(53, 50, 50);
+      /*border: 1px solid rgb(53, 50, 50);*/
+      border: 3px solid #8A817C;
       box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
   }
 </style>

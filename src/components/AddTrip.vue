@@ -1,9 +1,14 @@
 <template>
-
   <div class="addTrip" id="addTripID">
-
-    Autor výletu: <input type="text" id="pridejVylet_autor" v-model="autor" placeholder="Zadej autora výletu"/>
-    Název výletu: <input type="text" id="pridejVylet_nazev" v-model="nazevVyletu" placeholder="Napiš název výletu"/>
+    Autor výletu:
+    <input type="text" id="pridejVylet_autor" v-model="autor" placeholder="Zadej autora výletu" />
+    Název výletu:
+    <input
+      type="text"
+      id="pridejVylet_nazev"
+      v-model="nazevVyletu"
+      placeholder="Napiš název výletu"
+    />
     Typ:
     <select name="vybranyTyp" v-model="vybranyTyp">
       <option v-bind:key="typ.id" v-for="typ in typy" v-bind:value="typ.id">{{typ.nazev}}</option>
@@ -12,55 +17,63 @@
     <select name="vybranyKraj" v-model="vybranyKraj">
       <option v-bind:key="kraj.id" v-for="kraj in kraje" v-bind:value="kraj.id">{{kraj.nazev}}</option>
     </select>
-  
-    <div class="filterLap">
 
-    </div>
-   
+    <div class="filterLap"></div>Popis výletu a zajímavosti na trase:
+    <textarea v-model="odstavce[0].text"></textarea>
 
-Popis výletu a zajímavosti na trase: <textarea v-model="odstavce[0].text"></textarea>  
+    <hr />
 
-<hr/>
-
-
-
-
-    <div>    
-      <input type="file" name='fotky' id="fotky" accept=".jpeg,.jpg" class="inputfile" multiple ref="Fotky" v-on:change="handleFiles" />
-      <label for='fotky'>Vyber fotky:</label>
+    <div class="buttonsAdd">
+      <input
+        type="file"
+        name="fotky"
+        id="fotky"
+        accept=".jpeg, .jpg"
+        class="inputfile"
+        multiple
+        ref="Fotky"
+        v-on:change="handleFiles"
+      />
+      <label for="fotky">Přidej fotky</label>
       <div v-if="photouploading">Nahrávám fotku/y na server, moment ...</div>
 
-      <div v-for="(fotka, index) in fotky" v-bind:key="index" class='fotka'>
-        <div class='fotkaimg'>
-          <img v-bind:src="'http://img.dogtrekking.cz/thumb/' + fotka.url" class='thumb' />
+      <div v-for="(fotka, index) in fotky" v-bind:key="index" class="fotka">
+        <div class="fotkaimg">
+          <img v-bind:src="'http://img.dogtrekking.cz/thumb/' + fotka.url" class="thumb" />
         </div>
-        <div class='fotkainfo'>
-          <input type='text' v-model="fotka.popisek" placeholder="Popisek fotky" />
-
+        <div class="fotkainfo">
+          <input type="text" v-model="fotka.popisek" placeholder="Popisek fotky" />
         </div>
       </div>
     </div>
 
     <br />
 
-    <div>
-      <input class="inputfile" type="file" name='vyber_gpx' id="vyber_gpx" accept=".gpx" ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
-      <label for='vyber_gpx'>Vyber GPX soubor:</label>
-      <div v-if='trasa_nahrana' class="gpxOk">GPX nahráno</div>
+    <div class="buttonsAdd">
+      <input
+        class="inputfile"
+        type="file"
+        name="vyber_gpx"
+        id="vyber_gpx"
+        accept=".gpx"
+        ref="gpx"
+        v-on:change="handleGpxFile"
+        value="Vyber GPX soubor"
+      />
+      <label for="vyber_gpx">Přidej GPX soubor</label>
+      <div v-if="trasa_nahrana" class="gpxOk">GPX nahráno</div>
     </div>
-
 
     <hr />
     <div class="button_center">
-    <div v-on:click="pridatVylet" ref="myFiles" class="button_addTrip">PŘIDAT VÝLET</div>
+      <div v-on:click="pridatVylet" ref="myFiles" class="button_addTrip">PŘIDAT VÝLET</div>
     </div>
 
-<div class="alert" v-bind:class="savingOK ? 'visible' : 'hidden'">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-  This is an alert box.
-</div>
+    <div class="alert" v-bind:class="savingOK ? 'visible' : 'hidden'">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      This is an alert box.
+    </div>
   </div>
-
 </template>
 
 <script>
@@ -99,9 +112,11 @@ export default {
 
       nazevVyletu: "",
 
-      odstavce: [{
-        text: ''
-      }],
+      odstavce: [
+        {
+          text: ""
+        }
+      ],
 
       trasa_gpx: "",
 
@@ -109,78 +124,82 @@ export default {
 
       map_position: { lat: 0.0, lon: 0.0 },
 
-      savingOK: false,
+      savingOK: false
     };
   },
 
-  mounted () {
-    let utils = document.createElement('script');
-    utils.setAttribute('src', '/utils.js');
+  mounted() {
+    let utils = document.createElement("script");
+    utils.setAttribute("src", "/utils.js");
     document.head.appendChild(utils);
   },
 
   methods: {
     handleFiles() {
-      this.photouploading = true; 
+      this.photouploading = true;
 
-      let promises = []; 
+      let promises = [];
 
-      this.$refs.Fotky.files.forEach(ele => { 
+      this.$refs.Fotky.files.forEach(ele => {
         const formData = new FormData();
-        
-        formData.append('file', ele)
-        
+
+        formData.append("file", ele);
+
         var obj = {
-          method: 'POST',
+          method: "POST",
           body: formData,
-          credentials: 'same-origin',
+          credentials: "same-origin"
         };
 
-        promises.push(fetch('http://img.dogtrekking.cz/add', obj)); 
+        promises.push(fetch("http://img.dogtrekking.cz/add", obj));
       });
 
-      Promise.all(promises)
-      .then(response => {
-        Promise.all(response.map(r => r.json())) 
-        .then(jsonArray => { 
+      Promise.all(promises).then(response => {
+        Promise.all(response.map(r => r.json())).then(jsonArray => {
           jsonArray.forEach(json => {
-
-            if (typeof(json.id) !== 'undefined' && json.id !== null && json.id !== '') {
+            if (
+              typeof json.id !== "undefined" &&
+              json.id !== null &&
+              json.id !== ""
+            ) {
               this.fotky.push({
-                alt: '',
+                alt: "",
                 url: json.id,
                 popisek: ""
               });
             }
           });
-        
+
           this.photouploading = false;
         });
       });
     },
-    
- 
+
     handleGpxFile() {
       const formData = new FormData();
-      
+
       this.$refs.gpx.files.forEach(ele => {
-        formData.append('file', ele)
+        formData.append("file", ele);
       });
 
       var obj = {
-        method: 'POST',
+        method: "POST",
         body: formData,
-        credentials: 'same-origin',
+        credentials: "same-origin"
       };
 
-      fetch('http://rest.dogtrekking.cz/gpx/add', obj)
-      .then(response => response.json())
-      .then(json => {
-        if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
-          this.trasa_gpx = json.Id; 
+      fetch("http://rest.dogtrekking.cz/gpx/add", obj)
+        .then(response => response.json())
+        .then(json => {
+          if (
+            typeof json.Id !== "undefined" &&
+            json.Id !== null &&
+            json.Id !== ""
+          )
+            this.trasa_gpx = json.Id;
           this.map_position = getFirstPointFromGpx(json.GpxContent);
           this.trasa_nahrana = true;
-      });
+        });
     },
 
     pridatVylet() {
@@ -208,33 +227,33 @@ export default {
       };
 
       fetch("http://rest.dogtrekking.cz/trips/add", obj)
-      .then(response => response.json())
-      .then(json => {
-        this.savingOK = true; 
+        .then(response => response.json())
+        .then(json => {
+          this.savingOK = true;
 
-        // vymazani formulare
-        this.vybranyKraj = 1;
-        this.vybranyTyp
-        this.autor = '';
-        this.nazevVyletu = '';
-        this.delka = 0;
-        this.odstavce = [{text: ''}];
-        this.zajimavosti = "";
-        this.trasa_gpx = "";
-        this.fotky = [];
-        this.trasa_nahrana = "";
-        this.map_position = { lat: 0.0, lon: 0.0 };
+          // vymazani formulare
+          this.vybranyKraj = 1;
+          this.vybranyTyp;
+          this.autor = "";
+          this.nazevVyletu = "";
+          this.delka = 0;
+          this.odstavce = [{ text: "" }];
+          this.zajimavosti = "";
+          this.trasa_gpx = "";
+          this.fotky = [];
+          this.trasa_nahrana = "";
+          this.map_position = { lat: 0.0, lon: 0.0 };
 
-        const inputFotky = this.$refs.Fotky;
-        inputFotky.type = 'text';
-        inputFotky.type = 'file';
+          const inputFotky = this.$refs.Fotky;
+          inputFotky.type = "text";
+          inputFotky.type = "file";
 
-        const inputGpx = this.$refs.gpx;
-        inputGpx.type = 'text';
-        inputGpx.type = 'file';
+          const inputGpx = this.$refs.gpx;
+          inputGpx.type = "text";
+          inputGpx.type = "file";
 
-        this.savingOK = false;
-      });
+          this.savingOK = false;
+        });
     }
   }
 };
@@ -242,7 +261,6 @@ export default {
 
 
 <style scoped>
-
 .fotka {
   display: flex;
   flex-flow: row;
@@ -256,7 +274,6 @@ export default {
   width: 100px;
   margin: 5px;
   border: 1px solid rgb(92, 91, 91);
-
 }
 
 .fotkainfo {
@@ -272,18 +289,18 @@ export default {
   display: flex;
   flex-flow: column;
   background-color: white;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
   margin-top: 5%;
   margin-bottom: 5%;
   color: #463f3a;
   box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
   padding: 15px;
-
 }
 
 .button_addTrip {
-  background-color: rgb(111, 180, 65);
+  /*background-color: rgb(111, 180, 65);*/
+  background-color: #e0afa0;
   padding: 20px;
   width: 300px;
   border-radius: 5px;
@@ -294,62 +311,60 @@ export default {
   display: flex;
   justify-content: center;
   box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
-
 }
 
 input {
   background-color: whitesmoke;
   border-radius: 5px;
   padding: 10px;
-
 }
 
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .gpxOk {
-  color: red;
+  color: #463f3a;
   display: flex;
   justify-content: center;
 }
 
 .inputfile + label {
-    font-size: 0,5 em;
-    font-weight: 500;
-    color: white;
-    background-color: #8C443E;
-    padding: 20px;
-    cursor: pointer; /* "hand" cursor */
+  font-size: 0, 5 em;
+  font-weight: 500;
+  color: white;
+  /*background-color: #8C443E;*/
+  background-color: #8a817c;
+  padding: 20px;
+  cursor: pointer; /* "hand" cursor */
   display: flex;
   justify-content: center;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0.4, 0.4, 0.4, 0.4);
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: rgb(111, 180, 65);
+  /*background-color: rgb(111, 180, 65);*/
+  background-color: #bcb8b1;
+  color: #463f3a;
 }
 
 select {
   background-color: whitesmoke;
   border-radius: 5px;
   padding: 10px;
-
 }
 
 li {
-
   border-radius: 5px;
   padding: 10px;
   list-style-type: none;
-
 }
 
 textarea {
@@ -357,12 +372,10 @@ textarea {
   border-radius: 5px;
   padding: 10px;
   list-style-type: none;
-
 }
 
 .button_addTrip:hover {
-  background-color: #8C443E;
-
+  background-color: #8c443e;
 }
 
 .button_center {
@@ -472,5 +485,26 @@ textarea {
 
 img.thumb {
   width: 100px;
+}
+
+.buttonsAdd {
+  margin-bottom: 4%;
+}
+
+@media (min-width: 500px) {
+  .buttonsAdd {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .addTrip {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .button_center {
+    margin-top: 2%;
+  }
 }
 </style>

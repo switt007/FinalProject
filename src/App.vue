@@ -20,7 +20,7 @@
         <a href="https://www.gotobrno.cz/misto/moravsky-kras/">Moravský kras, </a>
         <a href="https://www.gotobrno.cz/misto/palava/">Pálava, </a>
         <a href="https://www.gotobrno.cz/misto/slavkovske-bojiste-a-zamek/"> Slavkov, </a>
-        <a href="https://www.vitalia.cz/clanky/tip-na-vylet-z-pardubic-na-kole-do-zeleznych-hor/">Železné hory, </a>
+        <a href="https://www.vitalia.cz/clanky/tip-na-vylet-z-pardubic-na-kole-do-zeleznych-hor/">Železné hory </a>
       </p>
       <p>&copy; Jana Raczová & Alexandra Šimková</p>
     </footer>
@@ -279,7 +279,7 @@ p {
     margin: auto;
     margin-top: 5%;
     padding-top: 5%;
-    border: 1px solid rgb(53, 50, 50);
+    /*border: 3px solid #8A817C;*/
   }
   .filterRegion,
   .filterType {
