@@ -259,8 +259,9 @@ export default {
 };
 </script>
 
+<style lang="scss">
 
-<style scoped>
+
 .fotka {
   display: flex;
   flex-flow: row;
@@ -299,8 +300,7 @@ export default {
 }
 
 .button_addTrip {
-  /*background-color: rgb(111, 180, 65);*/
-  background-color: #e0afa0;
+  background-color: $menuColor;
   padding: 20px;
   width: 300px;
   border-radius: 5px;
