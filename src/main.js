@@ -10,6 +10,7 @@ import ListOfTrips from './components/ListOfTrips.vue';
 import ShortTrip from './components/ShortTrip.vue';
 import Detail from './components/Detail.vue';
 import MapOfTrips from './components/MapOfTrips.vue';
+// import './styles/variables.scss';
 
 Vue.config.productionTip = false
 

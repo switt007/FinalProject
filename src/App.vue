@@ -83,14 +83,9 @@ export default {
 
 
 
-<style>
-/* Paleta barev v1:
-text: #463F3A
-kontrast: #E0AFA0
-#8A817C
-#BCB8B1
-background: #F4F3EE
-*/
+<style lang="scss">
+
+
 body {
   margin: 0;
   padding: 0;
@@ -129,7 +124,7 @@ header {
   padding: 10%;
 }
 .liMenu {
-  background-color: #8a817c;
+  background-color: $menuColor;
   border: none;
   color: white;
   padding: 15px 32px;

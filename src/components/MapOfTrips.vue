@@ -90,12 +90,15 @@ export default {
 
 
 <style scoped>
-a.map,
-p.map {
-  color: black;
+  a.map, p.map {
+    color: black;
+  }
+
+  a.map {
+  background-color: green;
 }
 
-a:link {
+  a:link {
   color: darkolivegreen;
   text-decoration: none;
 }

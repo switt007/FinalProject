@@ -95,6 +95,8 @@ export default {
   margin-bottom: 30px;
 }
 
+
+
 .listOfTrips {
   background-color: peru;
   color: darkslategray;
