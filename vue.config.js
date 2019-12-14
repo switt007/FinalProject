@@ -4,7 +4,7 @@ module.exports = {
         sass: {
           prependData: `
             @import "@/styles/variables.scss";
-      
+            @import "@/styles/smap.scss";
           `
         }
       }

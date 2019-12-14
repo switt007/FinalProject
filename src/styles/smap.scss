@@ -1,0 +1,37 @@
+.smap .card {
+    width: 100px;
+    padding: 0;
+    .map {
+        font-size: 16px;
+        color: #463f3a;    
+    }
+    .card-header {
+        padding: 15px;
+        background-color: #f4f3ee;
+        border-bottom: 1px solid #463f3a;
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1;
+        }
+        a:hover {
+            text-decoration: underline;
+        }    
+    }
+    .card-body {
+        padding: 15px;
+    }
+}
+
+.textCard {
+    display: block;
+    /*display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    width: 200px;
+    white-space: nowrap;
+    font-size: 12px;
+}

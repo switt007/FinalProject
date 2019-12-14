@@ -29,10 +29,10 @@ export default {
   watch: {
     trips: function() {
       const types = {
-          "1": "images/icon.png",
-          "2": "images/bicycle-rider.png",
-          "3": "default"
-          };
+        "1": "Images/icon.png",
+        "2": "Images/bicycle-rider.png",
+        "3": "default"
+      };
 
       this.trips.forEach(ele => {
         let startPos = {};
@@ -54,20 +54,19 @@ export default {
             startPos.lat
           );
 
-          ele.card = new SMap.Card();
+          ele.card = new SMap.Card(250);
           ele.card.getHeader().innerHTML =
             "<a class='map' href='/detail/" +
             ele.id +
             "'><strong>" +
             ele.nazev +
             "</strong></a>";
-          ele.card.getBody().innerHTML = " ";
-
-          
+          ele.card.getBody().innerHTML = `<div class='textCard'>${ele.odstavce[0].text}</div>`;
 
           let options = {
             title: ele.nazev,
-            url: types[ele.typ]
+            url: types[ele.typ],
+            anchor: {left: 37.5, top: 75}
           };
 
           ele.marker = new SMap.Marker(
@@ -89,16 +88,17 @@ export default {
 
 
 
-<style scoped>
-  a.map, p.map {
-    color: black;
-  }
+<style lang="scss" scoped>
+a.map,
+p.map {
+  color: black;
+}
 
-  a.map {
+a.map {
   background-color: green;
 }
 
-  a:link {
+a:link {
   color: darkolivegreen;
   text-decoration: none;
 }
@@ -109,5 +109,14 @@ div.mapa {
   /*border: 1px solid rgb(53, 50, 50);*/
   border: 3px solid #8a817c;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+
+  a.map {
+    background-color: green;
+  }
+
+  a.map,
+  p.map {
+    color: black;
+  }
 }
 </style>

@@ -16,7 +16,7 @@
     <!-- FOOTER -->
     <footer>
       <p>
-        Zdroje textu:
+        Zdroje:
         <a href="https://www.gotobrno.cz/misto/moravsky-kras/">Moravský kras, </a>
         <a href="https://www.gotobrno.cz/misto/palava/">Pálava, </a>
         <a href="https://www.gotobrno.cz/misto/slavkovske-bojiste-a-zamek/"> Slavkov, </a>
