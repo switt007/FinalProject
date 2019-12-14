@@ -90,7 +90,6 @@ kontrast: #E0AFA0
 #BCB8B1
 background: #F4F3EE
 */
-
 body {
   margin: 0;
   padding: 0;
@@ -102,7 +101,6 @@ body {
   background-color: #f4f3ee;
   color: white;
 }
-
 header {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(assets/images/uvodniObrazek3.jpg) center center;
@@ -112,28 +110,23 @@ header {
   text-align: center;
   padding: 15% 0;
 }
-
 .title {
   font-size: 42px;
   padding-bottom: 2%;
   padding-left: 2%;
   padding-right: 2%;
 }
-
 .saying {
   padding: 0 10%;
   font-style: italic;
   opacity: 0.7;
 }
-
 .saying2 {
   opacity: 0.7;
 }
-
 .menu {
   padding: 10%;
 }
-
 .liMenu {
   background-color: #8a817c;
   border: none;
@@ -147,22 +140,18 @@ header {
   font-weight: bold;
   cursor: pointer;
 }
-
 .liMenu:hover,
 .liMenu:active {
   background-color: #bcb8b1;
   color: #463f3a;
 }
-
 .aktivni {
   background-color: #bcb8b1;
   color: #463f3a;
 }
-
 .ulMenu {
   padding: 0;
 }
-
 .shortTripDiv {
   background-color: #8a817c;
   padding: 5% 5% 3% 5%;
@@ -173,87 +162,72 @@ header {
   font-weight: bold;
   cursor: pointer;
 }
-
 .shortTripImg {
   width: 100%;
 }
-
 .text {
   display: none;
 }
-
 footer {
   background-color: #8a817c;
   padding: 5%;
   font-size: 14px;
 }
-
 a:not(.map) {
   color: white;
 }
-
 .searchTrip {
   margin: 10%;
   color: #463f3a;
 }
-
 p {
   margin-bottom: 0;
   margin-top: 0;
 }
-
 /* TABLET */
-
 @media (min-width: 500px) {
   body {
     font-size: 24px;
   }
-
   header {
     padding: 10% 0;
   }
-
   .title {
     font-size: 55px;
   }
-
   .menu {
     margin: 0;
     padding: 0;
   }
-
   .ulMenu {
     display: flex;
     justify-content: center;
     margin: 0;
     background-color: #8a817c;
   }
-
   .liMenu {
-    margin: 0 2%;
+    margin: 0 0%;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
     font-size: 24px;
     border-radius: 0;
   }
-
   .shortTripSection {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 10% 10% 7% 10%;
   }
-
   .shortTripDiv {
     margin: 7%;
     border-radius: 0;
   }
-
   footer {
     font-size: 20px;
     padding: 5%;
     text-align: center;
   }
-
   .searchTrip {
     display: flex;
     justify-content: space-evenly;
@@ -261,24 +235,19 @@ p {
     padding-bottom: 0;
     max-width: 960px;
   }
-
   .filterRegion,
   .filterType {
     flex: 1 1 auto;
   }
-
   .filterType {
     margin-bottom: 10%;
   }
-
   .custom-select {
     margin-left: 5%;
     width: 80%;
   }
 }
-
 /* DESKTOP */
-
 @media (min-width: 1000px) {
   .text {
     display: block;
@@ -289,7 +258,6 @@ p {
     text-overflow: ellipsis;
     font-weight: normal;
   }
-
   .shortTripSection {
     max-width: 960px;
     display: grid;
@@ -301,11 +269,9 @@ p {
     margin-top: 5%;
     margin-bottom: 5%;
   }
-
   body {
     background-color: #f4f3ee;
   }
-
   .searchTrip {
     background-color: white;
     box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2), -3px 0 5px rgba(0, 0, 0, 0.2),
@@ -314,25 +280,21 @@ p {
     margin: auto;
     margin-top: 5%;
     padding-top: 5%;
+    border: 1px solid rgb(53, 50, 50);
   }
-
   .filterRegion,
   .filterType {
     padding-left: 5%;
   }
-
   .checkmark {
     background-color: #bcb8b1;
   }
-
   .radios:hover input ~ .checkmark {
     background-color: #8a817c;
   }
-
   .custom-select {
     width: 80%;
   }
-
   .filterType {
     margin-bottom: 10%;
   }
