@@ -48,9 +48,11 @@ Popis výletu a zajímavosti na trase: <textarea v-model="odstavce[0].text"></te
     </div>
 
     <br />
+
     <div>
       <input class="inputfile" type="file" name='vyber_gpx' id="vyber_gpx" accept=".gpx" ref="gpx" v-on:change="handleGpxFile" value="Vyber GPX soubor" />
       <label for='vyber_gpx'>Vyber GPX soubor:</label>
+      <div v-if='trasa_nahrana'>GPX nahráno</div>
     </div>
 
 
@@ -72,6 +74,7 @@ export default {
   data: function() {
     return {
       photouploading: false,
+      trasa_nahrana: false,
       vybranyKraj: 1,
       kraje: [
         { id: 1, nazev: "Hlavní město Praha" },
@@ -182,13 +185,10 @@ export default {
       .then(response => response.json())
       .then(json => {
         if (typeof(json.Id) !== 'undefined' && json.Id !== null && json.Id !== '')
-          this.trasa_gpx = json.GpxContent; 
-          this.map_position = getFirstPointFromGpx(json.GpxContent);
+          this.trasa_gpx = json.Id; 
+          this.trasa_nahrana = true;
       });
     },
-
-// zmena !!! fetch('http://rest.dogtrekking.cz/trips/addgpx', obj) na fetch('http://rest.dogtrekking.cz/gpx/add', obj)
-
 
     pridatVylet() {
       let newTrip = {
@@ -224,13 +224,12 @@ export default {
         this.vybranyTyp
         this.autor = '';
         this.nazevVyletu = '';
-        this.okruh = 1;
         this.delka = 0;
         this.odstavce = [{text: ''}];
         this.zajimavosti = "";
-        this.trasa = "";
         this.trasa_gpx = "";
         this.fotky = [];
+        this.trasa_nahrana = "";
         this.map_position = { lat: 0.0, lon: 0.0 };
 
         const inputFotky = this.$refs.Fotky;
