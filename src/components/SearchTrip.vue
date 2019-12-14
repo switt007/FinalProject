@@ -97,6 +97,7 @@ export default {
         this.trips = response;
         this.generateArrayOfAuthors();
         console.log(this.trips);
+        this.filterTrips();
    });
   },
 
@@ -127,7 +128,7 @@ export default {
       this.filterTrips();
     },
 
-    filterTrips() {
+    /*filterTrips() {
       this.filteredTrips =
         this.tripAutor === "Všichni"
           ? this.tripKraj === 0
@@ -143,6 +144,13 @@ export default {
               .filter(trip => trip.autor == this.tripAutor)
               .filter(trip => trip.kraj == this.tripKraj)
               .filter(trip => trip.typ == this.tripTyp); 
+    },*/
+
+    filterTrips() {
+    this.filteredTrips = this.trips.filter(trip => trip.typ == this.tripTyp);
+    this.filteredTrips = this.tripKraj !== 0 ? this.filteredTrips.filter(trip => trip.kraj == this.tripKraj) : this.filteredTrips;
+    //this.filteredTrips = this.tripAutor !== 'Všichni' ? this.filteredTrips.filter(trip => trip.autor == this.tripAutor) : this.filteredTrips;
+    console.log(this.filteredTrips);
     },
 
     goToDetail(shortTrip) {

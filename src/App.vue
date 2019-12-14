@@ -260,7 +260,6 @@ p {
   }
   .shortTripSection {
     max-width: 960px;
-    display: grid;
     justify-content: center;
     margin: auto;
     background-color: white;
